@@ -14,15 +14,12 @@ public class User {
     public User(long ID) {
         this.ID = ID;
 
-        sfrates = new int[SFCode.values().length];
+        sfrates = new int[SFCODE_SIZE];
+        topics = new ArrayList<>(15);
     }
 
     public String getName() {
         return name;
-    }
-
-    public long getID() {
-        return ID;
     }
 
     /**
@@ -48,20 +45,29 @@ public class User {
     }
 
     public int getSS() {
-        return sfrates[numberFromCode(SFCode.SS)];
+        return getCodeCount(SFCode.SS);
     }
 
     public int getSF() {
-        return sfrates[numberFromCode(SFCode.SF)];
+        return getCodeCount(SFCode.SF);
     }
 
     public int getFS() {
-        return sfrates[numberFromCode(SFCode.FS)];
+        return getCodeCount(SFCode.FS);
     }
 
     public int getFF() {
-        return sfrates[numberFromCode(SFCode.FF)];
+        return getCodeCount(SFCode.FF);
     }
 
+    /**
+     * Gets the number of times user recorded code
+     *
+     * @param code code to retrieve count for
+     * @return number of times code was recorded for User
+     */
+    public int getCodeCount(SFCode code) {
+        return sfrates[numberFromCode(code)];
+    }
 
 }
