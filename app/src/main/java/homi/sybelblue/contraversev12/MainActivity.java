@@ -4,15 +4,9 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.Button;
-import android.widget.CompoundButton;
-import android.widget.RadioButton;
-import android.widget.Switch;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
-
-    private boolean doToast = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,12 +27,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void defaultOnCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-        if (isChecked) toastRelay(buttonView.getText());
-    }
-
     private void toastRelay(CharSequence toast) {
-        if (doToast)
-            Toast.makeText(MainActivity.this, toast, Toast.LENGTH_SHORT).show();
+        Toast.makeText(MainActivity.this, toast, Toast.LENGTH_SHORT).show();
     }
 }
