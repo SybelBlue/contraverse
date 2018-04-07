@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Contraverse v1.2</string>
+    <string name="user_id_pref_key">userID</string>
 </resources>
