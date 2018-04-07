@@ -2,10 +2,6 @@ package homi.sybelblue.contraversev12;
 
 public class Rating {
 
-    public static enum SFCode {
-        S, F, SS, SF, FS, FF
-    }
-
     private long rating;
 
     public Rating() {
