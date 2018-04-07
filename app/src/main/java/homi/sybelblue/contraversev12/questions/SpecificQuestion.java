@@ -11,6 +11,7 @@ public class SpecificQuestion {
     public final Prompt<Integer> multipleChoice;
     public final Prompt<String> rationale;
 
+    public String topicHeading = "Fluff";
     public short rating;
 
     private SFCode sfCode;
