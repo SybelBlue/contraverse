@@ -1,6 +1,7 @@
 package homi.sybelblue.contraversev12;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 import homi.sybelblue.contraversev12.questions.SpecificQuestion;
 
@@ -23,5 +24,19 @@ public class Topic extends ArrayList<SpecificQuestion> {
         boolean b = super.add(specificQuestion);
         if (b) specificQuestion.topicHeading = name;
         return b;
+    }
+
+    @Override
+    public boolean addAll(Collection<? extends SpecificQuestion> c) {
+        for (SpecificQuestion specificQuestion : c)
+            specificQuestion.topicHeading = name;
+        return super.addAll(c);
+    }
+
+    @Override
+    public boolean addAll(int index, Collection<? extends SpecificQuestion> c) {
+        for (SpecificQuestion specificQuestion : c)
+            specificQuestion.topicHeading = name;
+        return super.addAll(index, c);
     }
 }
