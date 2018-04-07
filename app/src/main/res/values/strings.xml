@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">Contraverse v1.2</string>
     <string name="user_id_pref_key">userID</string>
+    <string name="login_explanation">Hi! Welcome to Contraverse. To get started, please tell us a bit about yourself.</string>
+    <string name="login_next">Next</string>
+    <string name="login_back">&lt;</string>
+    <string name="login_submit">Submit</string>
 </resources>
