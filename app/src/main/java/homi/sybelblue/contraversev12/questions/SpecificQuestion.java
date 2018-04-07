@@ -20,6 +20,7 @@ public class SpecificQuestion {
         this.multipleChoice = multipleChoice;
         this.rationale = rationale;
         status = Status.open;
+        this.rating = rating;
     }
 
     public void setStatus(Status status) {
