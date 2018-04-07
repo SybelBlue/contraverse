@@ -1,7 +1,5 @@
 package homi.sybelblue.contraversev12;
 
-import kotlin.NotImplementedError;
-
 public class Rating {
 
     public static enum SFCode {
@@ -22,7 +20,5 @@ public class Rating {
         this.rating = rating;
     }
 
-    public void incrementBy(SFCode code) {
-        throw new NotImplementedError();
-    }
+    //public void incrementBy(SFCode code) { }
 }
