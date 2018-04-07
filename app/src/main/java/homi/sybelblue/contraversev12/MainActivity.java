@@ -2,7 +2,6 @@ package homi.sybelblue.contraversev12;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.RadioButton;
@@ -19,33 +18,20 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Button button = findViewById(R.id.buttonTest);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                toastRelay("Hi!");
-            }
-        });
+        button.setOnClickListener(v -> toastRelay("Hi!"));
 
         RadioButton radioButton = findViewById(R.id.testRadio0);
-        radioButton.setOnCheckedChangeListener(new RadioGroupDefualtOnCheckedChangeListener());
+        radioButton.setOnCheckedChangeListener(this::defaultOnCheckedChanged);
 
         radioButton = findViewById(R.id.testRadio1);
-        radioButton.setOnCheckedChangeListener(new RadioGroupDefualtOnCheckedChangeListener());
+        radioButton.setOnCheckedChangeListener(this::defaultOnCheckedChanged);
 
         Switch aSwitch = findViewById(R.id.switch2);
-        aSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                doToast = isChecked;
-            }
-        });
+        aSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> doToast = isChecked);
     }
 
-    private class RadioGroupDefualtOnCheckedChangeListener implements CompoundButton.OnCheckedChangeListener {
-        @Override
-        public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-            if (isChecked) toastRelay(buttonView.getText());
-        }
+    private void defaultOnCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+        if (isChecked) toastRelay(buttonView.getText());
     }
 
     private void toastRelay(CharSequence toast) {
