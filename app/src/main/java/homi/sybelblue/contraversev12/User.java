@@ -10,11 +10,14 @@ public class User {
     private int[] sfrates;
     public final Response<Integer>[] startingQuestionResponses;
 
+    private int rating, level;
+
     public static ArrayList<Topic> topics;
 
     public User(long ID, Response<Integer>[] startingQuestionResponses) {
         this.ID = ID;
         this.startingQuestionResponses = startingQuestionResponses;
+        updateRatingAndLevel();
 
         sfrates = new int[SFCODE_SIZE];
         topics = new ArrayList<>(15);
@@ -44,6 +47,17 @@ public class User {
                 sfrates[numberFromCode(SFCode.Fail)]++;
                 break;
         }
+
+        updateRatingAndLevel();
+    }
+
+    /**
+     * Updates the rating and level fields for this user
+     * based on the recorded SFCodes
+     */
+    private void updateRatingAndLevel() {
+        rating = 2*getSS() + Math.min(getSS(), getSF() + getFS()) - Math.max(getSF(), getFF());
+        level = (int) Math.sqrt(rating() + 4) - 1;
     }
 
     public int getSS() {
@@ -70,6 +84,24 @@ public class User {
      */
     public int getCodeCount(SFCode code) {
         return sfrates[numberFromCode(code)];
+    }
+
+    /**
+     * Returns the level of the user
+     *
+     * @return the user's level
+     */
+    public int level() {
+        return level;
+    }
+
+    /**
+     * Calculated rating for the user based on recorded SFCodes
+     *
+     * @return user rating
+     */
+    public int rating() {
+        return rating;
     }
 
 }
