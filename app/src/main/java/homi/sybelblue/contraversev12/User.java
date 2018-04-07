@@ -21,10 +21,6 @@ public class User {
         return name;
     }
 
-    public long getID() {
-        return ID;
-    }
-
     /**
      * Records that User had an incident with code.
      * If code is SF or SS, Success is also incremented.
