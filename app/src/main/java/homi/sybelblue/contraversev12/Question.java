@@ -1,10 +1,10 @@
 package homi.sybelblue.contraversev12;
 
-public class Question {
+public class Question<T> {
 
     public final String text;
 
-    private Response response;
+    private Response<T> response;
 
     public Question(String text) {
         this.text = text;
@@ -14,11 +14,11 @@ public class Question {
         return response != null;
     }
 
-    public Response getResponse() {
+    public Response<T> getResponse() {
         return response;
     }
 
-    public void setResponse(Response response) {
+    public void setResponse(Response<T> response) {
         this.response = response;
     }
 }
