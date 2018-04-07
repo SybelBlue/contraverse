@@ -14,7 +14,8 @@ public class User {
     public User(long ID) {
         this.ID = ID;
 
-        sfrates = new int[SFCode.values().length];
+        sfrates = new int[SFCODE_SIZE];
+        topics = new ArrayList<>(15);
     }
 
     public String getName() {
@@ -59,6 +60,12 @@ public class User {
         return getCodeCount(SFCode.FF);
     }
 
+    /**
+     * Gets the number of times user recorded code
+     *
+     * @param code code to retrieve count for
+     * @return number of times code was recorded for User
+     */
     public int getCodeCount(SFCode code) {
         return sfrates[numberFromCode(code)];
     }

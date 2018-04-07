@@ -2,6 +2,8 @@ package homi.sybelblue.contraversev12;
 
 public class ContraverseUtils {
 
+    public static int SFCODE_SIZE = SFCode.values().length;
+
     public static int numberFromCode(SFCode code) {
         switch (code) {
             case Success:
