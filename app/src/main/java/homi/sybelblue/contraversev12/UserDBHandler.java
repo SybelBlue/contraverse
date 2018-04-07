@@ -50,7 +50,7 @@ public class UserDBHandler extends SQLiteOpenHelper {
         values.put(COLUMN_FS, user.getFS());
         values.put(COLUMN_FF, user.getFF());
         for (int i = 0; i < NUM_TOPICS; i++) {
-            values.put("Topics" + i, user.topics.get(i).toString());
+            values.put("Topics" + i, user.startingQuestionResponses[i].response);
         }
     }
 

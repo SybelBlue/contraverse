@@ -6,26 +6,28 @@ public class Topic extends Question {
         open, closed
     }
 
-    //public final String text; from Question
+    //public final String response; from Question
     public final Question[] subQuestions;
-    public final User madeBy;
+    //public final User madeBy;
     public final Rating rating;
 
     private Status status;
 
-    public Topic(String primaryText, User madeBy, Question... subQuestions) {
+    public Topic(String primaryText, Question... subQuestions) {
         super(primaryText);
         status = Status.open;
-        this.madeBy = madeBy;
+        //this.madeBy = madeBy;
         this.subQuestions = subQuestions;
         rating = new Rating();
     }
 
-    public Status getStatus() {
-        return status;
+    public boolean isOpen() {
+        return status == Status.open;
     }
 
     public void setStatus(Status status) {
         this.status = status;
     }
+
+
 }

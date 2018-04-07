@@ -2,15 +2,15 @@ package homi.sybelblue.contraversev12;
 
 import java.util.Date;
 
-public class Response {
+public class Response<T> {
 
     public final Date timestamp;
     public final User user;
-    public final String text;
+    public final T response;
 
-    public Response(User user, String text) {
+    public Response(User user, T response) {
         this.user = user;
-        this.text = text;
+        this.response = response;
         timestamp = new Date();
     }
 }

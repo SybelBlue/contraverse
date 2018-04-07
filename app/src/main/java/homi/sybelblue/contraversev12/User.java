@@ -8,11 +8,13 @@ public class User {
     public String name;
     public final long ID;
     private int[] sfrates;
+    public final Response<Integer>[] startingQuestionResponses;
 
-    public ArrayList<Topic> topics;
+    public static ArrayList<Topic> topics;
 
-    public User(long ID) {
+    public User(long ID, Response<Integer>[] startingQuestionResponses) {
         this.ID = ID;
+        this.startingQuestionResponses = startingQuestionResponses;
 
         sfrates = new int[SFCODE_SIZE];
         topics = new ArrayList<>(15);

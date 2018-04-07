@@ -8,14 +8,14 @@
     tools:layout_editor_absoluteY="81dp">
 
     <TextView
-        android:id="@+id/text"
+        android:id="@+id/response"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="Hello World!"
+        android:response="Hello World!"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -29,8 +29,8 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="Hello"
-        app:layout_constraintBottom_toTopOf="@+id/text"
+        android:response="Hello"
+        app:layout_constraintBottom_toTopOf="@+id/response"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -45,21 +45,21 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/text">
+        app:layout_constraintTop_toTopOf="@+id/response">
 
         <RadioButton
             android:id="@+id/testRadio1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="MAC" />
+            android:response="MAC" />
 
         <RadioButton
             android:id="@+id/testRadio0"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="PC" />
+            android:response="PC" />
     </RadioGroup>
 
     <Switch
@@ -70,8 +70,8 @@
         android:layout_marginEnd="8dp"
         android:layout_marginTop="8dp"
         android:checked="true"
-        android:text="Toasty?"
-        app:layout_constraintBottom_toTopOf="@+id/text"
+        android:response="Toasty?"
+        app:layout_constraintBottom_toTopOf="@+id/response"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonTest" />
 
