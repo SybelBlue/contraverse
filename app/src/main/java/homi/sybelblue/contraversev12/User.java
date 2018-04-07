@@ -5,13 +5,15 @@ import java.util.ArrayList;
 public class User {
 
     public String name;
-    private long ID;
-    private int ss;
-    private int sf;
-    private int fs;
-    private int ff;
+    public final long ID;
+    private int[] sfrates;
 
     public ArrayList<Topic> topics;
+
+    public User(long ID) {
+        this.ID = ID;
+
+    }
 
     public String getName() {
         return name;
