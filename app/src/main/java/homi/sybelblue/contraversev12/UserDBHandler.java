@@ -76,6 +76,13 @@ public class UserDBHandler extends SQLiteOpenHelper {
         db.execSQL(CREATE_USER_TOPICS.toString());
     }
 
+    public User findUser(long ID){
+        String query = "SELECT * FROM " + TABLE_NAME + "WHERE " + COLUMN_ID + " = '" + ID + "'";
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+        return new User(3, new Response[3]);
+    }
+
     @Override
     public void onConfigure(SQLiteDatabase db) {
         super.onConfigure(db);
