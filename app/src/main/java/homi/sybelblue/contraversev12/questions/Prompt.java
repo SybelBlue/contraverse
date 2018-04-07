@@ -1,12 +1,14 @@
-package homi.sybelblue.contraversev12;
+package homi.sybelblue.contraversev12.questions;
 
-public class Question<T> {
+import homi.sybelblue.contraversev12.Response;
+
+public class Prompt<T> {
 
     public final String text;
 
     private Response<T> response;
 
-    public Question(String text) {
+    public Prompt(String text) {
         this.text = text;
     }
 
