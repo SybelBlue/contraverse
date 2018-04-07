@@ -48,20 +48,23 @@ public class User {
     }
 
     public int getSS() {
-        return sfrates[numberFromCode(SFCode.SS)];
+        return getCodeCount(SFCode.SS);
     }
 
     public int getSF() {
-        return sfrates[numberFromCode(SFCode.SF)];
+        return getCodeCount(SFCode.SF);
     }
 
     public int getFS() {
-        return sfrates[numberFromCode(SFCode.FS)];
+        return getCodeCount(SFCode.FS);
     }
 
     public int getFF() {
-        return sfrates[numberFromCode(SFCode.FF)];
+        return getCodeCount(SFCode.FF);
     }
 
+    public int getCodeCount(SFCode code) {
+        return sfrates[numberFromCode(code)];
+    }
 
 }
