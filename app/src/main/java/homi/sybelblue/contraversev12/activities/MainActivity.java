@@ -12,14 +12,17 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.sendbird.android.SendBird;
+
 import homi.sybelblue.contraversev12.R;
 import homi.sybelblue.contraversev12.User;
 import homi.sybelblue.contraversev12.UserDBHandler;
 
-//asrugh
 public class MainActivity extends AppCompatActivity implements View.OnClickListener  {
 
     public static final int NUM_TOPICS = 1;
+    public static final String APP_ID = "3DD0EDE4-A184-4C09-955F-2DAB409EDBA1"; //yay security!
+
     public static UserDBHandler userDBHandler;
     public static User currentUser;
     private SharedPreferences preferences;
@@ -76,6 +79,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         // Check whether the user has set up their "account" yet
         preferences = getSharedPreferences(getString(R.string.preferences_filename), 0);
+
+        // this sets up the messaging service
+        SendBird.init(APP_ID, getApplicationContext());
 
         //TODO for debugging the login activity only
         SharedPreferences.Editor editor = preferences.edit();
