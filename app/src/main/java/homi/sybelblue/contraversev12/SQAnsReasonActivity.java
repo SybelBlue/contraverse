@@ -30,12 +30,17 @@ public class SQAnsReasonActivity extends AppCompatActivity implements View.OnCli
         questionText = intent.getStringExtra("questionText");
         response = intent.getStringExtra("response");
 
+        // find all the views we need
         questionTextView = findViewById(R.id.sq_ans_reason_question);
         radioResponseTextView = findViewById(R.id.sq_ans_reason_radio_response);
         editText = findViewById(R.id.sq_ans_reason_edit_text);
         submit = findViewById(R.id.sq_ans_reason_submit);
 
         submit.setOnClickListener(this);
+
+        // populate the text views with the question and radio button response
+        questionTextView.setText("TOPIC: " + topic + "\n" + questionText);
+        radioResponseTextView.setText("YOUR RESPONSE: " + response);
     }
 
     @Override
@@ -43,6 +48,8 @@ public class SQAnsReasonActivity extends AppCompatActivity implements View.OnCli
         switch (v.getId()){
             case R.id.sq_ans_reason_submit:
                 // TODO go to next activity!
+                String reason = editText.getText().toString();
+                Intent intent;
                 break;
         }
     }

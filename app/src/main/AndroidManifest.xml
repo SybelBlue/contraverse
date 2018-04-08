@@ -41,6 +41,12 @@
                 android:value=".MainActivity" />
         </activity>
         <activity android:name=".SQAnsReasonActivity"
+            android:parentActivityName=".AddMenu">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".AddMenu" />
+        </activity>
+        <activity android:name=".ConvoActivity"
             android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
