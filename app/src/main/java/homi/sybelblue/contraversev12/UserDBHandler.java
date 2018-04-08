@@ -142,7 +142,7 @@ public class UserDBHandler extends SQLiteOpenHelper {
         values.put(COLUMN_FS, FS);
         values.put(COLUMN_FF, FF);
         for (int i = 0; i < NUM_TOPICS; i++) {
-            values.put(MainActivity.TOPICS[i], user.topicQuestions[i]);
+            values.put("Topic" + i, user.topicQuestions[i]);
         }
         SQLiteDatabase db = this.getWritableDatabase();
         db.insert(USERS_TABLE, null, values);
