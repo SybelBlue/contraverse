@@ -41,6 +41,33 @@ public class UserDBHandler extends SQLiteOpenHelper {
         return result.toString();
     }
 
+    @Override
+    public void onCreate(SQLiteDatabase db) {
+        StringBuilder CREATE_USER_TOPICS = new StringBuilder("CREATE TABLE " + "Topics" + "(");
+        StringBuilder CREATE_USERS_TABLE = new StringBuilder("CREATE TABLE " + TABLE_NAME + "(" + COLUMN_ID +
+                " INTEGER PRIMARY KEY," + COLUMN_NAME + " TEXT," + COLUMN_SS +
+                " INTEGER," + COLUMN_SF + " INTEGER," + COLUMN_FS + " INTEGER," + COLUMN_FF + " INTEGER,");
+
+        for (int i = 0; i < NUM_TOPICS; i++) {
+            CREATE_USER_TOPICS.append("Topic");
+            CREATE_USER_TOPICS.append(i);
+            CREATE_USER_TOPICS.append(" TEXT,");
+        }
+
+        for (int i = 0; i < NUM_TOPICS; i++){
+            CREATE_USERS_TABLE.append("Topic");
+            CREATE_USERS_TABLE.append(i);
+            CREATE_USERS_TABLE.append(" INTEGER,");
+        }
+
+        CREATE_USER_TOPICS.replace(CREATE_USER_TOPICS.length() - 1, CREATE_USER_TOPICS.length(), "");
+        CREATE_USERS_TABLE.replace(CREATE_USERS_TABLE.length() - 1, CREATE_USERS_TABLE.length(), "");
+        CREATE_USER_TOPICS.append(")");
+        CREATE_USERS_TABLE.append(")");
+        db.execSQL(CREATE_USERS_TABLE.toString());
+        db.execSQL(CREATE_USER_TOPICS.toString());
+    }
+
     public void addUser(User user) {
         ContentValues values = new ContentValues();
         values.put(COLUMN_ID, user.ID);
@@ -49,36 +76,12 @@ public class UserDBHandler extends SQLiteOpenHelper {
         values.put(COLUMN_SF, user.getSF());
         values.put(COLUMN_FS, user.getFS());
         values.put(COLUMN_FF, user.getFF());
-//        for (int i = 0; i < NUM_TOPICS; i++) {
-//            values.put("Topic" + i, user.topicQuestions[i]);
-//        }
+        for (int i = 0; i < NUM_TOPICS; i++) {
+            values.put("Topic" + i, user.topicQuestions[i]);
+        }
         SQLiteDatabase db = this.getWritableDatabase();
         db.insert(TABLE_NAME, null, values);
         db.close();
-    }
-
-    @Override
-    public void onCreate(SQLiteDatabase db) {
-        StringBuilder CREATE_USER_TOPICS = new StringBuilder("CREATE TABLE " + "Topics" + "(");
-        StringBuilder CREATE_USERS_TABLE = new StringBuilder("CREATE TABLE " + TABLE_NAME + "(" + COLUMN_ID +
-                " INTEGER PRIMARY KEY," + COLUMN_NAME + " TEXT," + COLUMN_SS +
-                " INTEGER," + COLUMN_SF + " INTEGER," + COLUMN_FS + " INTEGER," + COLUMN_FF + " INTEGER,");
-
-//        for (int i = 0; i < NUM_TOPICS; i++) {
-//            CREATE_USER_TOPICS.append("Topic");
-//            CREATE_USERS_TABLE.append("Topic");
-//            CREATE_USER_TOPICS.append(i);
-//            CREATE_USERS_TABLE.append(i);
-//            CREATE_USER_TOPICS.append(" TEXT,");
-//            CREATE_USERS_TABLE.append(" INTEGER,");
-//        }
-
-//        CREATE_USER_TOPICS.replace(CREATE_USER_TOPICS.length() - 1, CREATE_USER_TOPICS.length(), "");
-        CREATE_USERS_TABLE.replace(CREATE_USERS_TABLE.length() - 1, CREATE_USERS_TABLE.length(), "");
-        CREATE_USER_TOPICS.append(")");
-        CREATE_USERS_TABLE.append(")");
-        db.execSQL(CREATE_USERS_TABLE.toString());
-        db.execSQL(CREATE_USER_TOPICS.toString());
     }
 
     public User findUser(long ID){
@@ -93,16 +96,15 @@ public class UserDBHandler extends SQLiteOpenHelper {
         int FF;
         int[] topicQuestions = new int[NUM_TOPICS];
         if (cursor.moveToFirst()){
-            cursor.moveToFirst();
             foundID = (long) cursor.getInt(0);
             name = cursor.getString(1);
             SS = cursor.getInt(2);
             SF = cursor.getInt(3);
             FS = cursor.getInt(4);
             FF = cursor.getInt(5);
-//            for (int i = 6; i < NUM_TOPICS; i++) {
-//                topicQuestions[i - 6] = cursor.getInt(i);
-//            }
+            for (int i = 6; i < NUM_TOPICS; i++) {
+                topicQuestions[i - 6] = cursor.getInt(i);
+            }
             User user = new User(foundID, topicQuestions);
             user.name = name;
             user.setSS(SS);
