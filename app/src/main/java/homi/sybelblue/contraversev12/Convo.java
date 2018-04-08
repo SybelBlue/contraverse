@@ -1,6 +1,7 @@
 package homi.sybelblue.contraversev12;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 
 import homi.sybelblue.contraversev12.questions.SpecificQuestion;
@@ -24,10 +25,7 @@ public class Convo {
         this.userA = userA;
         this.userB = userB;
         this.specificQuestion = specificQuestion;
-        this.convoTexts = new ArrayList<>(convoTexts.length);
-
-        for (Response<String> response : convoTexts)
-            this.convoTexts.add(response);
+        this.convoTexts = new ArrayList<>(Arrays.asList(convoTexts));
     }
 
     public Convo(Date timestamp, User userA, User userB, SpecificQuestion specificQuestion) {

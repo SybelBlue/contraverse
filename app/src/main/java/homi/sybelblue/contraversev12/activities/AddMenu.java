@@ -1,4 +1,4 @@
-package homi.sybelblue.contraversev12;
+package homi.sybelblue.contraversev12.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import java.util.Random;
 
+import homi.sybelblue.contraversev12.R;
 import homi.sybelblue.contraversev12.questions.Prompt;
 import homi.sybelblue.contraversev12.questions.SpecificQuestion;
 

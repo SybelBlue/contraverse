@@ -1,4 +1,4 @@
-package homi.sybelblue.contraversev12;
+package homi.sybelblue.contraversev12.activities;
 
 
 import android.content.Intent;
@@ -11,6 +11,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
+
+import homi.sybelblue.contraversev12.R;
+import homi.sybelblue.contraversev12.User;
+import homi.sybelblue.contraversev12.UserDBHandler;
 
 //asrugh
 public class MainActivity extends AppCompatActivity implements View.OnClickListener  {

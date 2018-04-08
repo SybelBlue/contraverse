@@ -1,4 +1,4 @@
-package homi.sybelblue.contraversev12;
+package homi.sybelblue.contraversev12.activities;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import homi.sybelblue.contraversev12.ConvoFragment.OnListFragmentInteractionListener;
+import homi.sybelblue.contraversev12.R;
 import homi.sybelblue.contraversev12.dummy.DummyContent.DummyItem;
 
 import java.util.List;

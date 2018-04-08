@@ -1,10 +1,14 @@
-package homi.sybelblue.contraversev12;
+package homi.sybelblue.contraversev12.activities;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
+
+import homi.sybelblue.contraversev12.R;
+import homi.sybelblue.contraversev12.User;
+import homi.sybelblue.contraversev12.activities.MainActivity;
 
 public class LoginConfActivity extends AppCompatActivity implements View.OnClickListener{
 

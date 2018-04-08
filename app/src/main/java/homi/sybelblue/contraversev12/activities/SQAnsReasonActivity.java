@@ -1,4 +1,4 @@
-package homi.sybelblue.contraversev12;
+package homi.sybelblue.contraversev12.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import homi.sybelblue.contraversev12.R;
 
 public class SQAnsReasonActivity extends AppCompatActivity implements View.OnClickListener {
 

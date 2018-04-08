@@ -10,10 +10,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import homi.sybelblue.contraversev12.activities.MyConvoRecyclerViewAdapter;
 import homi.sybelblue.contraversev12.dummy.DummyContent;
 import homi.sybelblue.contraversev12.dummy.DummyContent.DummyItem;
-
-import java.util.List;
 
 /**
  * A fragment representing a list of messages in the conversation.
