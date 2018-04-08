@@ -68,7 +68,8 @@
             android:parentActivityName=".activities.ConvoActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".activities.ConvoActivity" />></activity>
+                android:value=".activities.ConvoActivity" />
+        </activity>
     </application>
 
 </manifest>
