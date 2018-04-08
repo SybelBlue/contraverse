@@ -38,24 +38,35 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         String[]btns = {"Religion", "Politics", "The Great Pumpkin"} ;
         LinearLayout p1 = (LinearLayout)findViewById(R.id.p11);
 
+        Intent intent = new Intent(this, ConvoActivity.class);
         for (int i=0; i < btns.length; i++) {
             Button b1 = new Button(MainActivity.this);
+            final String text = btns[i];
             b1.setId(i+1);
-            b1.setText(btns[i]);
+            b1.setText(text);
             b1.setTag(i);
             p1.addView(b1);
-            b1.setOnClickListener(MainActivity.this);
+
+            b1.setOnClickListener(v -> {
+                intent.putExtra(getString(R.string.sq_topic_key), text);
+                startActivity(intent);
+            });
         }
         String[]btns2 = {"HotDog Sandwiches", "Puppy Kisses", "Coffee vs Tea"} ;
         LinearLayout p2 = (LinearLayout)findViewById(R.id.p12);
 
         for (int i=0; i < btns.length; i++) {
             Button b1 = new Button(MainActivity.this);
-            b1.setId(i+1);
-            b1.setText(btns[i]);
+            final String text = btns2[i];
+            b1.setId(i + 1);
+            b1.setText(text);
             b1.setTag(i);
             p2.addView(b1);
-            b1.setOnClickListener(MainActivity.this);
+
+            b1.setOnClickListener(v -> {
+                intent.putExtra(getString(R.string.sq_topic_key), text);
+                startActivity(intent);
+            });
         }
 
         Button buttonNew = new Button(MainActivity.this);
@@ -88,9 +99,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //            e.printStackTrace();
 //        }
         //TODO for debugging the login activity only
-        SharedPreferences.Editor editor = preferences.edit();
-        editor.putLong(getString(R.string.user_id_pref_key), -1);
-        editor.commit();
+//        SharedPreferences.Editor editor = preferences.edit();
+//        editor.putLong(getString(R.string.user_id_pref_key), -1);
+//        editor.commit();
     }
 
     @Override

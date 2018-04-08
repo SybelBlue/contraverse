@@ -46,9 +46,11 @@ public class ContraverseUtils {
         throw new IllegalArgumentException();
     }
 
-    public static void pushOldExtra(Context context, Intent currentIntent, Intent toNewIntent, int stringKey) {
-        String key = context.getString(stringKey);
-        toNewIntent.putExtra(key, currentIntent.getStringExtra(key));
+    public static void pushOldExtra(Context context, Intent currentIntent, Intent toNewIntent, int... stringKeys) {
+        for (Integer stringKey : stringKeys){
+            String key = context.getString(stringKey);
+            toNewIntent.putExtra(key, currentIntent.getStringExtra(key));
+        }
     }
 
     public static void toastRelay(Context context, CharSequence toast) {

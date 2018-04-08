@@ -1,5 +1,6 @@
 package homi.sybelblue.contraversev12.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -7,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.sendbird.android.BaseMessage;
@@ -24,6 +26,8 @@ public class ConvoActivity extends AppCompatActivity implements View.OnClickList
     private MyConvoRecyclerViewAdapter mMessageAdapter;
     private List<BaseMessage> mMessageList;
 
+    private String title;
+
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -33,7 +37,7 @@ public class ConvoActivity extends AppCompatActivity implements View.OnClickList
         mMessageAdapter = new MyConvoRecyclerViewAdapter(this, mMessageList);
         mMessageRecycler.setLayoutManager(new LinearLayoutManager(this));
 
-        setTitle(getIntent().getStringExtra(getString(R.string.sq_topic_key)));
+        setTitle(title = getIntent().getStringExtra(getString(R.string.sq_topic_key)));
     }
 
     @Override
@@ -42,6 +46,13 @@ public class ConvoActivity extends AppCompatActivity implements View.OnClickList
             default:
                 toastRelay(this, "onClick!");
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        setTitle(title);
     }
 
     @Override
@@ -58,11 +69,19 @@ public class ConvoActivity extends AppCompatActivity implements View.OnClickList
         // Handle item selection
         switch (item.getItemId()) {
             case R.id.list_item:
+                Intent intent = new Intent(ConvoActivity.this, ViewSQResponsesActivity.class);
+                Intent current = getIntent();
 
+                ContraverseUtils.pushOldExtra(this, current, intent,
+                        R.string.sq_topic_key,
+                        R.string.sq_question_text,
+                        R.string.sq_response,
+                        R.string.sq_reasoning);
 
-            default:
-                return super.onOptionsItemSelected(item);
+                startActivity(intent);
+                break;
         }
+        return super.onOptionsItemSelected(item);
     }
 
 }

@@ -57,11 +57,8 @@ public class SQAnsReasonActivity extends AppCompatActivity implements View.OnCli
                 Intent currentIntent = getIntent();
                 Intent intent = new Intent(SQAnsReasonActivity.this, ConvoActivity.class);
 
-                pushOldExtra(this, currentIntent, intent, R.string.sq_topic_key);
-
-                pushOldExtra(this, currentIntent, intent, R.string.sq_question_text);
-
-                pushOldExtra(this, currentIntent, intent, R.string.sq_response);
+                pushOldExtra(this, currentIntent, intent,
+                        R.string.sq_topic_key, R.string.sq_question_text, R.string.sq_response);
 
                 intent.putExtra(getString(R.string.sq_reasoning), reason);
 
