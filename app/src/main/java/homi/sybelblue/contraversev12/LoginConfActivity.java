@@ -1,6 +1,5 @@
 package homi.sybelblue.contraversev12;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -11,7 +10,6 @@ public class LoginConfActivity extends AppCompatActivity implements View.OnClick
 
     private TextView confirmationText;
     private String displayName;
-    private Intent startIntent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -19,8 +17,7 @@ public class LoginConfActivity extends AppCompatActivity implements View.OnClick
         setContentView(R.layout.activity_login_conf);
 
         findViewById(R.id.login_submit).setOnClickListener(this);
-        startIntent = getIntent();
-        displayName = startIntent.getStringExtra("displayName");
+        displayName = getIntent().getStringExtra("displayName");
     }
 
     @Override
@@ -28,6 +25,7 @@ public class LoginConfActivity extends AppCompatActivity implements View.OnClick
         super.onStart();
 
         confirmationText = findViewById(R.id.login_confirmation_text);
+        confirmationText.setText("Your Display Name: " + displayName);
     }
 
     @Override

@@ -93,7 +93,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onStart();
 
         long userID = preferences.getLong(getString(R.string.user_id_pref_key), -1); // i = -1 means the default return val is -1
-        toastRelay(userID + "");
         // If they have not, start the user profile setup activity
         if(userID == -1){
             Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
@@ -106,7 +105,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 toastRelay("Welcome " + currentUser.name + "!");
             } else {
                 toastRelay("Welcome! We didn't find your info.");
-                System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&" + userDBHandler.getTableString());
             }
 
         }

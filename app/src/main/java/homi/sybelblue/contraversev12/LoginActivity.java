@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -32,6 +33,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         displayNameView = findViewById(R.id.login_disp_name);
         form = findViewById(R.id.login_form);
 
+        toastRelay("Welcome! We didn't find your info.");
         //TODO actually ask the startup questions (I think they are officially called SpecificQuestion Questions)
     }
 
@@ -49,6 +51,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 break;
 
         }
+    }
+
+    private void toastRelay(CharSequence toast) {
+        Toast.makeText(LoginActivity.this, toast, Toast.LENGTH_SHORT).show();
     }
 
 }
