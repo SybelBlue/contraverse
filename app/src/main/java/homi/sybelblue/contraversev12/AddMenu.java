@@ -28,7 +28,7 @@ public class AddMenu extends AppCompatActivity implements View.OnClickListener  
         TextView ti = new TextView(AddMenu.this);
         String title = options[i];
         LinearLayout P1 = (LinearLayout)findViewById(R.id.p1);
-        ti.setText("New Conversation");
+        ti.setText(options[i]);
         ti.setTag(-1);
         P1.addView(ti);
 
