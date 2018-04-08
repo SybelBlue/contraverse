@@ -1,4 +1,4 @@
-package homi.sybelblue.contraversev12;
+package homi.sybelblue.contraversev12.activities;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -10,7 +10,9 @@ import android.widget.TextView;
 
 import java.util.Random;
 
-public class Settings extends AppCompatActivity implements View.OnClickListener  {
+import homi.sybelblue.contraversev12.R;
+
+public class SettingsActivity extends AppCompatActivity implements View.OnClickListener  {
 
 
     @Override
@@ -24,7 +26,7 @@ public class Settings extends AppCompatActivity implements View.OnClickListener 
         Random rand = new Random();
         int i = rand.nextInt(options.length);
 
-        TextView ti = new TextView(Settings.this);
+        TextView ti = new TextView(SettingsActivity.this);
         String title = options[i];
         LinearLayout P1 = (LinearLayout)findViewById(R.id.p1);
         ti.setText(options[i]);

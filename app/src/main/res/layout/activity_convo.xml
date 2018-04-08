@@ -1,8 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/app_bar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
+
+        <!--<android.support.v7.widget.Toolbar-->
+        <!--android:id="@+id/toolbar"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="?attr/actionBarSize"-->
+        <!--android:background="?attr/colorPrimary" />-->
+
+        <!--<LinearLayout-->
+            <!--android:id="@+id/toolbarLinearLayout"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:orientation="horizontal">-->
+
+            <!--<TextView-->
+                <!--android:id="@+id/recipient_sq_response_summary"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_weight="1"-->
+                <!--android:text="TextView"-->
+                <!--android:textAlignment="center"-->
+                <!--android:textColor="@color/lightGrey"-->
+                <!--android:textSize="20sp"-->
+                <!--tools:text="Test Text" />-->
+
+            <!--<TextView-->
+                <!--android:id="@+id/sender_sq_response_summary"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_weight="1"-->
+                <!--android:text="Test Text"-->
+                <!--android:textAlignment="center"-->
+                <!--android:textColor="@color/purple"-->
+                <!--android:textSize="20sp" />-->
+
+        <!--</LinearLayout>-->
+
+    </android.support.design.widget.AppBarLayout>
 
     <!--<fragment android:name="homi.sybelblue.contraversev12.ConvoFragment"-->
         <!--android:layout_width="match_parent"-->
@@ -21,36 +66,38 @@
         android:id="@+id/layout_chatbox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:minHeight="48dp"
+        android:layout_marginBottom="5dp"
         android:background="#ffffff"
+        android:minHeight="48dp"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent">
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
 
         <EditText
             android:id="@+id/edittext_chatbox"
-            android:hint="Enter message"
-            android:background="@android:color/transparent"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
-            android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:maxLines="6"/>
+            android:background="@android:color/transparent"
+            android:hint="Enter message"
+            android:maxLines="6" />
 
     <!--</fragment>-->
         <Button
             android:id="@+id/button_chatbox_send"
-            android:text="SEND"
-            android:textSize="14dp"
-            android:background="?attr/selectableItemBackground"
-            android:clickable="true"
             android:layout_width="64dp"
             android:layout_height="48dp"
+            android:layout_gravity="bottom"
+            android:background="?attr/selectableItemBackground"
+            android:clickable="true"
             android:gravity="center"
-            android:layout_gravity="bottom" />
+            android:text="SEND"
+            android:textSize="14dp" />
 
     </LinearLayout>
 
