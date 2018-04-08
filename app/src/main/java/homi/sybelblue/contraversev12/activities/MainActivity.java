@@ -1,6 +1,7 @@
 package homi.sybelblue.contraversev12.activities;
 
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -134,10 +135,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //
 //        }
 //    }
-
-    private void toastRelay(CharSequence toast) {
-        Toast.makeText(MainActivity.this, toast, Toast.LENGTH_SHORT).show();
-    }
 
     @Override
     public void onClick(View v) {

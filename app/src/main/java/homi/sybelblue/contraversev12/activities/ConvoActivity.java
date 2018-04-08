@@ -6,6 +6,8 @@ import android.view.View;
 
 import homi.sybelblue.contraversev12.R;
 
+import static homi.sybelblue.contraversev12.ContraverseUtils.toastRelay;
+
 public class ConvoActivity extends AppCompatActivity implements View.OnClickListener {
 
 
@@ -18,7 +20,8 @@ public class ConvoActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public void onClick(View v){
         switch (v.getId()){
-
+            default:
+                toastRelay(this, "onClick!");
         }
     }
 

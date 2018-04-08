@@ -2,6 +2,7 @@ package homi.sybelblue.contraversev12;
 
 import android.content.Context;
 import android.content.Intent;
+import android.widget.Toast;
 
 public class ContraverseUtils {
 
@@ -48,5 +49,9 @@ public class ContraverseUtils {
     public static void pushOldExtra(Context context, Intent currentIntent, Intent toNewIntent, int stringKey) {
         String key = context.getString(stringKey);
         toNewIntent.putExtra(key, currentIntent.getStringExtra(key));
+    }
+
+    public static void toastRelay(Context context, CharSequence toast) {
+        Toast.makeText(context, toast, Toast.LENGTH_SHORT).show();
     }
 }
