@@ -9,7 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
-import com.sendbird.android.BaseMessage;
+import homi.sybelblue.contraversev12.Response;
 
 import java.util.List;
 
@@ -22,7 +22,7 @@ public class ConvoActivity extends AppCompatActivity implements View.OnClickList
 
     private RecyclerView mMessageRecycler;
     private MyConvoRecyclerViewAdapter mMessageAdapter;
-    private List<BaseMessage> mMessageList;
+    private List<Response> mMessageList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){

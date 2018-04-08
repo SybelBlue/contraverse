@@ -1,6 +1,7 @@
 package homi.sybelblue.contraversev12.activities;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,9 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.sendbird.android.BaseMessage;
-import com.sendbird.android.SendBird;
-import com.sendbird.android.UserMessage;
+import homi.sybelblue.contraversev12.Response;
 
 import homi.sybelblue.contraversev12.R;
 
@@ -21,10 +20,11 @@ public class MyConvoRecyclerViewAdapter extends RecyclerView.Adapter<MyConvoRecy
     private static final int VIEW_TYPE_MESSAGE_SENT = 1;
     private static final int VIEW_TYPE_MESSAGE_RECEIVED = 2;
 
-    private final List<BaseMessage> mValues;
+    private final List<Response> mValues;
     private Context mContext;
+    private SharedPreferences preferences;
 
-    public MyConvoRecyclerViewAdapter(Context context, List<BaseMessage> items) {
+    public MyConvoRecyclerViewAdapter(Context context, List<Response> items) {
         mValues = items;
         mContext = context;
     }
@@ -32,6 +32,8 @@ public class MyConvoRecyclerViewAdapter extends RecyclerView.Adapter<MyConvoRecy
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view;
+
+        preferences = mContext.getSharedPreferences("", 0);
 
         if (viewType == VIEW_TYPE_MESSAGE_SENT) {
             view = LayoutInflater.from(parent.getContext())
@@ -48,7 +50,8 @@ public class MyConvoRecyclerViewAdapter extends RecyclerView.Adapter<MyConvoRecy
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
-        UserMessage message = (UserMessage) mValues.get(position);
+
+        Response message = mValues.get(position);
 
         switch (holder.getItemViewType()) {
             case VIEW_TYPE_MESSAGE_SENT:
@@ -67,22 +70,28 @@ public class MyConvoRecyclerViewAdapter extends RecyclerView.Adapter<MyConvoRecy
     // Determines the appropriate ViewType according to the sender of the message.
     @Override
     public int getItemViewType(int position) {
-        UserMessage message = (UserMessage) mValues.get(position);
-
-        if (message.getSender().getUserId().equals(SendBird.getCurrentUser().getUserId())) {
-            // If the current user is the sender of the message
+        if(mValues.get(position).user.ID == preferences.getLong(mContext.getString(R.string.user_id_pref_key), -1)){
             return VIEW_TYPE_MESSAGE_SENT;
-        } else {
-            // If some other user sent the message
+        }
+        else {
             return VIEW_TYPE_MESSAGE_RECEIVED;
         }
+//        UserMessage message = (UserMessage) mValues.get(position);
+//
+//        if (message.getSender().getUserId().equals(SendBird.getCurrentUser().getUserId())) {
+//            // If the current user is the sender of the message
+//            return VIEW_TYPE_MESSAGE_SENT;
+//        } else {
+//            // If some other user sent the message
+//            return VIEW_TYPE_MESSAGE_RECEIVED;
+//        }
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final View mView;
         public final TextView mIdView;
         public final TextView mContentView;
-        public BaseMessage mItem;
+        public Response mItem;
 
         public ViewHolder(View view) {
             super(view);
@@ -109,12 +118,12 @@ public class MyConvoRecyclerViewAdapter extends RecyclerView.Adapter<MyConvoRecy
             profileImage = (ImageView) itemView.findViewById(R.id.image_message_profile);
         }
 
-        void bind(UserMessage message) {
-            messageText.setText(message.getMessage());
+        void bind(Response message) {
+            messageText.setText(message.response.toString());
 
             // Format the stored timestamp into a readable String using method.
-            timeText.setText(message.getCreatedAt()+"");
-            nameText.setText(message.getSender().getNickname());
+            timeText.setText(message.timestamp.toString());
+            nameText.setText(message.user.name);
 
             // Insert the profile image from the URL into the ImageView.
             //Utils.displayRoundImageFromUrl(mContext, message.getSender().getProfileUrl(), profileImage);
@@ -130,11 +139,11 @@ public class MyConvoRecyclerViewAdapter extends RecyclerView.Adapter<MyConvoRecy
             timeText = (TextView) itemView.findViewById(R.id.text_message_time);
         }
 
-        void bind(UserMessage message) {
-            messageText.setText(message.getMessage());
+        void bind(Response message) {
+            messageText.setText(message.response.toString());
 
             // Format the stored timestamp into a readable String using method.
-            timeText.setText(message.getCreatedAt()+"");
+            timeText.setText(message.timestamp.toString());
         }
     }
 }
