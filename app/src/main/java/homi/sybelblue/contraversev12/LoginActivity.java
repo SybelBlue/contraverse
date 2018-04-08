@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import java.util.prefs.Preferences;
 
-public class LoginActivity extends Activity implements View.OnClickListener {
+public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
     private ConstraintLayout confirmationLayout;
     private LinearLayout form;
@@ -20,6 +20,8 @@ public class LoginActivity extends Activity implements View.OnClickListener {
     private EditText displayNameView;
 
     private TextView confirmationText;
+
+    private String displayName;
 
 
     @Override
@@ -43,6 +45,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
         form = findViewById(R.id.login_form);
 
         // make the form visible so user can answer the questions; make the confirmation text invisible
+        //TODO make these separate activities so it isn't a fucking monster
         form.setVisibility(View.VISIBLE);
         confirmationLayout.setVisibility(View.GONE);
 
@@ -53,7 +56,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.login_next:
-                String displayName = displayNameView.getText().toString();
+                displayName = displayNameView.getText().toString();
                 //TODO get the responses for the rest of the startup questions
 
                 confirmationLayout.setVisibility(View.VISIBLE);
@@ -66,8 +69,18 @@ public class LoginActivity extends Activity implements View.OnClickListener {
                 break;
 
             case R.id.login_submit:
-                //TODO store the data in the
-                SharedPreferences preferences = getSharedPreferences("", 0);
+                // save the user's ID in the sharedpreferences
+                //TODO generate an actual user ID????
+                SharedPreferences preferences = getSharedPreferences(getString(R.string.preferences_filename), 0);
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putInt(getString(R.string.user_id_pref_key), 3); //TODO store the data in the database
+                editor.commit();
+
+                User user = new User(3, new int[]{0});
+                user.name = displayName;
+
+                MainActivity.userDBHandler.addUser(user);
+
                 finish();
         }
     }

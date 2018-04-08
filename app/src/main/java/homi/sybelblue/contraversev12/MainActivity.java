@@ -8,10 +8,14 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static UserDBHandler userDBHandler;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        userDBHandler = new UserDBHandler(this, null, 1);
 
     }
 
@@ -20,7 +24,12 @@ public class MainActivity extends AppCompatActivity {
         super.onStart();
 
         // Check whether the user has set up their "account" yet
-        SharedPreferences preferences = getSharedPreferences("", 0);
+        SharedPreferences preferences = getSharedPreferences(getString(R.string.preferences_filename), 0);
+//
+//        //TODO for debugging the login activity only
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putInt(getString(R.string.user_id_pref_key), -1);
+
         int userID = preferences.getInt(getString(R.string.user_id_pref_key), -1); // i = -1 means the default return val is -1
         // If they have not, start the user profile setup activity
         if(userID == -1){
@@ -29,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         }
         // if they have, get the user's data from our database
         else{
-            //TODO get user data from database
+            userDBHandler.findUser(userID);
         }
     }
 
