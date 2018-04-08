@@ -20,9 +20,7 @@ public class ConvoActivity extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_convo);
 
-        TextView textView = findViewById(R.id.recipient_sq_response_summary);
-        textView.setText(getIntent().getStringExtra(getString(R.string.sq_response)));
-        textView.setText(getIntent().getStringExtra(getString(R.string.sq_response)));
+        setTitle(getIntent().getStringExtra(getString(R.string.sq_topic_key)));
     }
 
     @Override

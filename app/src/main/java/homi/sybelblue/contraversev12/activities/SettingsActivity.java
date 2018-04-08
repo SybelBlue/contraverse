@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import java.util.Random;
 
+import homi.sybelblue.contraversev12.R;
+
 public class SettingsActivity extends AppCompatActivity implements View.OnClickListener  {
 
 

@@ -52,15 +52,15 @@ public class LoginConfActivity extends AppCompatActivity implements View.OnClick
                 MainActivity.userDBHandler.addUser(user);
 
                 //set the user up for SendBird messaging service
-                SendBird.connect(id+"", new SendBird.ConnectHandler() {
-                    @Override
-                    public void onConnected(com.sendbird.android.User user, SendBirdException e) {
-                        if (e != null) {
-                            // Error.
-                            return;
-                        }
-                    }
-                });
+//                SendBird.connect(id+"", new SendBird.ConnectHandler() {
+//                    @Override
+//                    public void onConnected(com.sendbird.android.User user, SendBirdException e) {
+//                        if (e != null) {
+//                             Error.
+//                            return;
+//                        }
+//                    }
+//                });
 
                 finish();
         }

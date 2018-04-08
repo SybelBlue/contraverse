@@ -18,34 +18,34 @@
         <!--android:layout_height="?attr/actionBarSize"-->
         <!--android:background="?attr/colorPrimary" />-->
 
-        <LinearLayout
-            android:id="@+id/toolbarLinearLayout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
+        <!--<LinearLayout-->
+            <!--android:id="@+id/toolbarLinearLayout"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:orientation="horizontal">-->
 
-            <TextView
-                android:id="@+id/recipient_sq_response_summary"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="TextView"
-                android:textAlignment="center"
-                android:textColor="@color/lightGrey"
-                android:textSize="20sp"
-                tools:text="Test Text" />
+            <!--<TextView-->
+                <!--android:id="@+id/recipient_sq_response_summary"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_weight="1"-->
+                <!--android:text="TextView"-->
+                <!--android:textAlignment="center"-->
+                <!--android:textColor="@color/lightGrey"-->
+                <!--android:textSize="20sp"-->
+                <!--tools:text="Test Text" />-->
 
-            <TextView
-                android:id="@+id/sender_sq_response_summary"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Test Text"
-                android:textAlignment="center"
-                android:textColor="@color/purple"
-                android:textSize="20sp" />
+            <!--<TextView-->
+                <!--android:id="@+id/sender_sq_response_summary"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_weight="1"-->
+                <!--android:text="Test Text"-->
+                <!--android:textAlignment="center"-->
+                <!--android:textColor="@color/purple"-->
+                <!--android:textSize="20sp" />-->
 
-        </LinearLayout>
+        <!--</LinearLayout>-->
 
     </android.support.design.widget.AppBarLayout>
 
