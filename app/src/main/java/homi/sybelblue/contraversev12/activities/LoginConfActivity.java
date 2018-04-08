@@ -30,7 +30,8 @@ public class LoginConfActivity extends AppCompatActivity implements View.OnClick
         super.onStart();
 
         confirmationText = findViewById(R.id.login_confirmation_text);
-        confirmationText.setText("Your Display Name: " + displayName);
+        confirmationText.setText("Your Display Name: " + displayName + "\n" +
+            "Remember that a successful conversation is repectful, interesting, responsive, and moves toward mutual understanding.");
     }
 
     @Override
@@ -46,10 +47,10 @@ public class LoginConfActivity extends AppCompatActivity implements View.OnClick
                 editor.putLong(getString(R.string.user_id_pref_key), id);
                 editor.commit();
 
-                homi.sybelblue.contraversev12.User user =
+                MainActivity.currentUser =
                         new homi.sybelblue.contraversev12.User(displayName, id, new int[MainActivity.NUM_TOPICS]);
 
-                MainActivity.userDBHandler.addUser(user);
+                MainActivity.userDBHandler.addUser(MainActivity.currentUser);
 
                 //set the user up for SendBird messaging service
 //                SendBird.connect(id+"", new SendBird.ConnectHandler() {
