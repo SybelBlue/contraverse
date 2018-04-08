@@ -127,10 +127,10 @@ public class SQMultipleChoiceActivity extends AppCompatActivity implements View.
                 // if a radio button is selected, allow user to move on
                 if(radioGroup.getCheckedRadioButtonId() != -1){
                     Intent intent = new Intent(SQMultipleChoiceActivity.this, SQAnsReasonActivity.class);
-                    intent.putExtra("topic", specificQuestion.topicHeading);
-                    intent.putExtra("questionText", specificQuestion.multipleChoice.text);
+                    intent.putExtra(getString(R.string.sq_topic_key), specificQuestion.topicHeading);
+                    intent.putExtra(getString(R.string.sq_question_text), specificQuestion.multipleChoice.text);
                     Button pickedButton = findViewById(radioGroup.getCheckedRadioButtonId());
-                    intent.putExtra("response", pickedButton.getText());
+                    intent.putExtra(getString(R.string.sq_response), pickedButton.getText());
                     startActivity(intent);
                 }
                 //TODO this does not work maybe? It doesn't make a toast for sure but eh

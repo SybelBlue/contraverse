@@ -51,11 +51,27 @@ public class SQAnsReasonActivity extends AppCompatActivity implements View.OnCli
             case R.id.sq_ans_reason_submit:
                 // TODO go to next activity!
                 String reason = editText.getText().toString();
+                Intent currentIntent = getIntent();
                 Intent intent = new Intent(SQAnsReasonActivity.this, ConvoActivity.class);
+
+                pushOldExtra(currentIntent, intent, R.string.sq_topic_key);
+
+                pushOldExtra(currentIntent, intent, R.string.sq_question_text);
+
+                pushOldExtra(currentIntent, intent, R.string.sq_response);
+
+                intent.putExtra(getString(R.string.sq_reasoning), reason);
+
                 startActivity(intent);
+
                 finish();
                 break;
         }
+    }
+
+    private void pushOldExtra(Intent currentIntent, Intent toNewIntent, int stringKey) {
+        String key = getString(stringKey);
+        toNewIntent.putExtra(key, currentIntent.getStringExtra(key));
     }
 
 }

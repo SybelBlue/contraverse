@@ -10,5 +10,10 @@
 
     <string name="sq_ans_reason_hint">Why do you think this? (Your answer will be shown to your conversation partner to help get the conversation going.)</string>
 
+    <string name="sq_topic_key">topic</string>
+    <string name="sq_question_text">question text</string>
+    <string name="sq_response">response</string>
+    <string name="sq_reasoning">reasoning</string>
+
     <string name="preferences_filename">shared_preferences</string>
 </resources>
