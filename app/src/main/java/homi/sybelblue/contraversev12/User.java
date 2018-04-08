@@ -1,10 +1,7 @@
 package homi.sybelblue.contraversev12;
 
-import java.util.ArrayList;
-
-import homi.sybelblue.contraversev12.questions.SpecificQuestion;
-
-import static homi.sybelblue.contraversev12.ContraverseUtils.*;
+import static homi.sybelblue.contraversev12.ContraverseUtils.SFCODE_SIZE;
+import static homi.sybelblue.contraversev12.ContraverseUtils.numberFromCode;
 
 public class User {
 
