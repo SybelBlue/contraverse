@@ -22,7 +22,7 @@ public class SuccessFailActivity extends AppCompatActivity {
         {
             Intent intent;
 //            startActivity(intent);
-            MainActivity.currentUser.recordSF(SFCode.Success);
+//            MainActivity.currentUser.recordSF(SFCode.Success);
             finish();
         });
 
@@ -31,7 +31,7 @@ public class SuccessFailActivity extends AppCompatActivity {
         {
             Intent intent;
 //            startActivity(intent);
-            MainActivity.currentUser.recordSF(SFCode.Failure);
+//            MainActivity.currentUser.recordSF(SFCode.Failure);
             finish();
         });
 

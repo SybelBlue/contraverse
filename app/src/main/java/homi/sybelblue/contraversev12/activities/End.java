@@ -28,20 +28,20 @@ public class End extends AppCompatActivity implements View.OnClickListener   {
 
 
 
-
-        Button Suc = new Button(End.this);
-        LinearLayout p1 = (LinearLayout)findViewById(R.id.p11);
-        Suc.setText("New Conversation");
-        Suc.setTag(-1);
-        p1.addView(Suc);
-        Suc.setOnClickListener(End.this);
-
-        Button Fail = new Button(End.this);
-        LinearLayout p3 = (LinearLayout)findViewById(R.id.p13);
-        Fail.setText("New Conversation");
-        Fail.setTag(1);
-        p3.addView(Fail);
-        Fail.setOnClickListener(End.this);
+//
+//        Button Suc = new Button(End.this);
+//        LinearLayout p1 = (LinearLayout)findViewById(R.id.p11);
+//        Suc.setText("New Conversation");
+//        Suc.setTag(-1);
+//        p1.addView(Suc);
+//        Suc.setOnClickListener(End.this);
+//
+//        Button Fail = new Button(End.this);
+//        LinearLayout p3 = (LinearLayout)findViewById(R.id.p13);
+//        Fail.setText("New Conversation");
+//        Fail.setTag(1);
+//        p3.addView(Fail);
+//        Fail.setOnClickListener(End.this);
     }
 
 

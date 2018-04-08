@@ -54,7 +54,6 @@ public class Review extends AppCompatActivity implements View.OnClickListener {
         // Handle item selection
         switch (item.getItemId()) {
             case R.id.action_settings:
-                ContraverseUtils.toastRelay(this, "we don here");
 
             default:
                 return super.onOptionsItemSelected(item);

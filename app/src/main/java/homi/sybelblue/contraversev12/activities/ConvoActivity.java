@@ -125,7 +125,7 @@ public class ConvoActivity extends AppCompatActivity implements View.OnClickList
                 startActivity(intent);
                 break;
             case R.id.endBtn:
-                Intent intent1 = new Intent(ConvoActivity.this, End.class);
+                Intent intent1 = new Intent(ConvoActivity.this, Review.class);
                 startActivity(intent1);
                 finish();
                 break;
