@@ -167,7 +167,8 @@ public class UserDBHandler extends SQLiteOpenHelper {
             FS = cursor.getInt(4);
             FF = cursor.getInt(5);
             for (int i = 6; i < NUM_TOPICS + 6; i++) {
-                topicQuestions[i - 6] = cursor.getInt(i);
+                int answer = cursor.getInt(i);
+                topicQuestions[i - 6] = answer;
             }
             User user = new User(foundID, topicQuestions);
             user.name = name;
