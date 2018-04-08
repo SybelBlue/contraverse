@@ -20,45 +20,45 @@
                 <intent-filter>
                     <action android:name="android.intent.action.MAIN" />
 
-                    <category android:name="android.intent.category.LAUNCHER" />
-                </intent-filter>
-            </activity>
-            <activity android:name=".activities.LoginActivity"
-                android:parentActivityName=".activities.MainActivity">
-                <meta-data
-                    android:name="android.support.PARENT_ACTIVITY"
-                    android:value=".activities.MainActivity" />
-            </activity>
-            <activity android:name=".activities.AddMenu"
-                android:parentActivityName=".activities.MainActivity">
-                <meta-data
-                    android:name="android.support.PARENT_ACTIVITY"
-                    android:value=".activities.MainActivity" />
-            </activity>
-            <activity android:name=".activities.LoginConfActivity"
-                android:parentActivityName=".activities.MainActivity">
-                <meta-data
-                    android:name="android.support.PARENT_ACTIVITY"
-                    android:value=".activities.MainActivity" />
-            </activity>
-            <activity android:name=".Settings"
-                android:parentActivityName=".activities.MainActivity">
-                <meta-data
-                    android:name="android.support.PARENT_ACTIVITY"
-                    android:value=".activities.MainActivity" />
-            </activity>
-            <activity android:name=".activities.SQAnsReasonActivity"
-                android:parentActivityName=".activities.AddMenu">
-                <meta-data
-                    android:name="android.support.PARENT_ACTIVITY"
-                    android:value=".activities.AddMenu" />
-            </activity>
-            <activity android:name=".activities.ConvoActivity"
-                android:parentActivityName=".activities.MainActivity">
-                <meta-data
-                    android:name="android.support.PARENT_ACTIVITY"
-                    android:value=".activities.MainActivity" />
-            </activity>
-        </application>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".activities.LoginActivity"
+            android:parentActivityName=".activities.MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.MainActivity" />
+        </activity>
+        <activity android:name=".activities.AddMenu"
+            android:parentActivityName=".activities.MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.MainActivity" />
+        </activity>
+        <activity android:name=".activities.LoginConfActivity"
+            android:parentActivityName=".activities.MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.MainActivity" />
+        </activity>
+        <activity android:name=".Settings"
+            android:parentActivityName=".activities.MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.MainActivity" />
+        </activity>
+        <activity android:name=".activities.SQAnsReasonActivity"
+            android:parentActivityName=".activities.AddMenu">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.AddMenu" />
+        </activity>
+        <activity android:name=".activities.ConvoActivity"
+            android:parentActivityName=".activities.MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.MainActivity" />
+        </activity>
+    </application>
 
-    </manifest>
+</manifest>

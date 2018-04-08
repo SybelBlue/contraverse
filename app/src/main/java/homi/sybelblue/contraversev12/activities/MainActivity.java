@@ -143,7 +143,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         String str = v.getTag().toString();
         if (str.equals("-1")) {
-            startActivity(new Intent(MainActivity.this, AddMenu.class));
+            startActivity(new Intent(MainActivity.this, SQMultipleChoiceActivity.class));
         }
         else {
             Toast.makeText(getApplicationContext(), "going to conversation " , Toast.LENGTH_SHORT).show();

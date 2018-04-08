@@ -19,7 +19,7 @@ import homi.sybelblue.contraversev12.R;
 import homi.sybelblue.contraversev12.questions.Prompt;
 import homi.sybelblue.contraversev12.questions.SpecificQuestion;
 
-public class AddMenu extends AppCompatActivity implements View.OnClickListener {
+public class SQMultipleChoiceActivity extends AppCompatActivity implements View.OnClickListener {
 
     private TextView questionTextView;
     private RadioGroup radioGroup;
@@ -65,7 +65,7 @@ public class AddMenu extends AppCompatActivity implements View.OnClickListener {
         Random rand = new Random();
         int i = rand.nextInt(options.length);
 
-        TextView ti = new TextView(AddMenu.this);
+        TextView ti = new TextView(SQMultipleChoiceActivity.this);
         String title = options[i];
         LinearLayout P1 = (LinearLayout)findViewById(R.id.p1);
         ti.setText(options[i]);
@@ -126,7 +126,7 @@ public class AddMenu extends AppCompatActivity implements View.OnClickListener {
                 // TODO I cannot actually get the intent to go to the next activity! Oh well
                 // if a radio button is selected, allow user to move on
                 if(radioGroup.getCheckedRadioButtonId() != -1){
-                    Intent intent = new Intent(AddMenu.this, SQAnsReasonActivity.class);
+                    Intent intent = new Intent(SQMultipleChoiceActivity.this, SQAnsReasonActivity.class);
                     intent.putExtra("topic", specificQuestion.topicHeading);
                     intent.putExtra("questionText", specificQuestion.multipleChoice.text);
                     Button pickedButton = findViewById(radioGroup.getCheckedRadioButtonId());
