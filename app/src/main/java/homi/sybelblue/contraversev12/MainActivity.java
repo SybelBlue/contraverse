@@ -85,29 +85,29 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
 
-    @Override
-    protected void onStart(){
-        super.onStart();
-
-        int userID = preferences.getInt(getString(R.string.user_id_pref_key), -1); // i = -1 means the default return val is -1
-        toastRelay(userID + "");
-        // If they have not, start the user profile setup activity
-        if(userID == -1){
-            Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-            startActivity(intent);
-        }
-        // if they have, get the user's data from our database
-        else{
-            currentUser = userDBHandler.findUser(userID);
-            if(currentUser != null){
-                toastRelay("Welcome " + currentUser.name + "!");
-            } else {
-                toastRelay("Welcome! We didn't find your info.");
-                System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&" + userDBHandler.getTableString());
-            }
-
-        }
-    }
+//    @Override
+//    protected void onStart(){
+//        super.onStart();
+//
+//        int userID = preferences.getInt(getString(R.string.user_id_pref_key), -1); // i = -1 means the default return val is -1
+//        toastRelay(userID + "");
+//        // If they have not, start the user profile setup activity
+//        if(userID == -1){
+//            Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+//            startActivity(intent);
+//        }
+//        // if they have, get the user's data from our database
+//        else{
+//            currentUser = userDBHandler.findUser(userID);
+//            if(currentUser != null){
+//                toastRelay("Welcome " + currentUser.name + "!");
+//            } else {
+//                toastRelay("Welcome! We didn't find your info.");
+//                System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&" + userDBHandler.getTableString());
+//            }
+//
+//        }
+//    }
 
     private void toastRelay(CharSequence toast) {
         Toast.makeText(MainActivity.this, toast, Toast.LENGTH_SHORT).show();
