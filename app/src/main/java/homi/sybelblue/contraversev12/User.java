@@ -94,6 +94,14 @@ public class User {
         setCodeCount(SFCode.FF, count);
     }
 
+    public int getRating() {
+        return rating;
+    }
+
+    public void setRating(int rating) {
+        this.rating = rating;
+    }
+
     public void setCodeCount(SFCode code, int count) {
         sfrates[numberFromCode(code)] = count;
     }

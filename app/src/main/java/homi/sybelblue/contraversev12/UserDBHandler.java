@@ -10,7 +10,7 @@ public class UserDBHandler extends SQLiteOpenHelper {
     private final int NUM_TOPICS;
     private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_NAME = "Users";
-    private static final String TABLE_NAME = "Users";
+    private static final String USERS_TABLE = "Users";
     private static final String COLUMN_ID = "ID";
     private static final String COLUMN_NAME = "Name";
     private static final String COLUMN_SS = "SS";
@@ -25,7 +25,7 @@ public class UserDBHandler extends SQLiteOpenHelper {
 
     public String getTableString() {
         StringBuilder result = new StringBuilder();
-        String query = "SELECT*FROM " + TABLE_NAME + ";";
+        String query = "SELECT*FROM " + USERS_TABLE + ";";
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(query, null);
         while (cursor.moveToNext()) {
@@ -44,9 +44,9 @@ public class UserDBHandler extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         StringBuilder CREATE_USER_TOPICS = new StringBuilder("CREATE TABLE " + "Topics" + "(");
-        StringBuilder CREATE_USERS_TABLE = new StringBuilder("CREATE TABLE " + TABLE_NAME + "(" + COLUMN_ID +
+        StringBuilder CREATE_USERS_TABLE = new StringBuilder("CREATE TABLE " + USERS_TABLE + "(" + COLUMN_ID +
                 " BIGINT PRIMARY KEY," + COLUMN_NAME + " TEXT," + COLUMN_SS +
-                " INTEGER," + COLUMN_SF + " INTEGER," + COLUMN_FS + " INTEGER," + COLUMN_FF + " INTEGER,");
+                " INTEGER," + COLUMN_SF + " INTEGER," + COLUMN_FS + " INTEGER," + COLUMN_FF + " INTEGER," + "UR" + " INTEGER,");
 
         for (int i = 0; i < NUM_TOPICS; i++) {
             String var = "Topic" + i;
@@ -67,23 +67,28 @@ public class UserDBHandler extends SQLiteOpenHelper {
     }
 
     public void addUser(User user) {
+        int SS = user.getSS();
+        int SF = user.getSF();
+        int FS = user.getFS();
+        int FF = user.getFF();
         ContentValues values = new ContentValues();
         values.put(COLUMN_ID, user.ID);
         values.put(COLUMN_NAME, user.name);
-        values.put(COLUMN_SS, user.getSS());
-        values.put(COLUMN_SF, user.getSF());
-        values.put(COLUMN_FS, user.getFS());
-        values.put(COLUMN_FF, user.getFF());
+        values.put(COLUMN_SS, SS);
+        values.put(COLUMN_SF, SF);
+        values.put(COLUMN_FS, FS);
+        values.put(COLUMN_FF, FF);
+        values.put("UR", generateRating(SS, SF, FS, FF));
         for (int i = 0; i < NUM_TOPICS; i++) {
             values.put("Topic" + i, user.topicQuestions[i]);
         }
         SQLiteDatabase db = this.getWritableDatabase();
-        db.insert(TABLE_NAME, null, values);
+        db.insert(USERS_TABLE, null, values);
         db.close();
     }
 
     public User findUser(long ID){
-        String query = "SELECT * FROM " + TABLE_NAME + " WHERE " + COLUMN_ID + " = " + ID + ";";
+        String query = "SELECT * FROM " + USERS_TABLE + " WHERE " + COLUMN_ID + " = " + ID + ";";
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(query, null);
         long foundID;
@@ -109,12 +114,62 @@ public class UserDBHandler extends SQLiteOpenHelper {
             user.setSF(SF);
             user.setFS(FS);
             user.setFF(FF);
+            user.setRating(generateRating(SS, SF, FS, FF));
             cursor.close();
             db.close();
             return user;
         }
         db.close();
         return null;
+    }
+
+    private int generateRating(int SS, int SF, int FS, int FF){
+        return  2*SS + Math.min(SS, (SF + FS));
+    }
+
+    public void incrementSS(long ID) {
+        String getValsQuery = "SELECT SS, SF, FS, FF FROM USERS WHERE ID = " + ID + ";";
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(getValsQuery, null);
+        if (cursor.moveToFirst()) {
+            int SS = cursor.getInt(0);
+            int SF = cursor.getInt(1);
+            int FS = cursor.getInt(2);
+            int FF = cursor.getInt(3);
+            int rating = generateRating(SS, SF, FS, FF);
+            String query = "UPDATE Users SET SS = SS + 1, Rating = " + rating + " WHERE ID = " + ID + ";";
+            db.execSQL(query);
+            cursor.close();
+        }
+        db.close();
+    }
+
+    public int getIntegerColumn(long ID, String column) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "SELECT " + column +  " FROM Users WHERE ID = " + ID + ";";
+        Cursor cursor = db.rawQuery(query, null);
+        if (cursor.moveToFirst()){
+            int result = cursor.getInt(0);
+            cursor.close();
+            db.close();
+            return result;
+        }
+        db.close();
+        return -1;
+    }
+
+    public String getStringColumn(long ID, String column) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "SELECT " + column + " FROM Users WHERE ID = " + ID + ";";
+        Cursor cursor = db.rawQuery(query, null);
+        if (cursor.moveToFirst()) {
+            String result = cursor.getString(0);
+            cursor.close();
+            db.close();
+            return result;
+        }
+        db.close();
+        return "";
     }
 
     @Override
