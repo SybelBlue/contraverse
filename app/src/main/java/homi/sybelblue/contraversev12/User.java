@@ -8,15 +8,15 @@ public class User {
     public String name;
     public final long ID;
     private int[] sfrates;
-    public final Response<Integer>[] startingQuestionResponses;
+    public final int[] topicQuestions;
 
     private int rating, level;
 
     public static ArrayList<Topic> topics;
 
-    public User(long ID, Response<Integer>[] startingQuestionResponses) {
+    public User(long ID, int[] topicQuestions) {
         this.ID = ID;
-        this.startingQuestionResponses = startingQuestionResponses;
+        this.topicQuestions = new int[topics.size()];
         updateRatingAndLevel();
 
         sfrates = new int[SFCODE_SIZE];

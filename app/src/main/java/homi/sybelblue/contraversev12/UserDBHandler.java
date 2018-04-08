@@ -50,7 +50,7 @@ public class UserDBHandler extends SQLiteOpenHelper {
         values.put(COLUMN_FS, user.getFS());
         values.put(COLUMN_FF, user.getFF());
         for (int i = 0; i < NUM_TOPICS; i++) {
-            values.put("Topics" + i, user.startingQuestionResponses[i].response);
+            values.put("Topics" + i, user.topicQuestions[i]);
         }
     }
 
@@ -80,7 +80,31 @@ public class UserDBHandler extends SQLiteOpenHelper {
         String query = "SELECT * FROM " + TABLE_NAME + "WHERE " + COLUMN_ID + " = '" + ID + "'";
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(query, null);
-        return new User(3, new Response[3]);
+        long foundID;
+        String name;
+        int SS;
+        int SF;
+        int FS;
+        int FF;
+        int[] topicQuestions = new int[NUM_TOPICS];
+        if (cursor.moveToFirst()){
+            cursor.moveToFirst();
+            foundID = (long) cursor.getInt(0);
+            name = cursor.getString(1);
+            SS = cursor.getInt(2);
+            SF = cursor.getInt(3);
+            FS = cursor.getInt(4);
+            FF = cursor.getInt(5);
+            for (int i = 6; i < NUM_TOPICS; i++) {
+                topicQuestions[i - 6] = cursor.getInt(i);
+            }
+            User user = new User(foundID, topicQuestions);
+            cursor.close();
+            db.close();
+            return user;
+        }
+        db.close();
+        return null;
     }
 
     @Override
