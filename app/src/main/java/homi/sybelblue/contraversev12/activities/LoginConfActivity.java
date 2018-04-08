@@ -46,10 +46,10 @@ public class LoginConfActivity extends AppCompatActivity implements View.OnClick
                 editor.putLong(getString(R.string.user_id_pref_key), id);
                 editor.commit();
 
-                homi.sybelblue.contraversev12.User user =
+                MainActivity.currentUser =
                         new homi.sybelblue.contraversev12.User(displayName, id, new int[MainActivity.NUM_TOPICS]);
 
-                MainActivity.userDBHandler.addUser(user);
+                MainActivity.userDBHandler.addUser(MainActivity.currentUser);
 
                 //set the user up for SendBird messaging service
 //                SendBird.connect(id+"", new SendBird.ConnectHandler() {
