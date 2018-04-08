@@ -45,6 +45,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 startActivity(intent);
                 //TODO get the responses for the rest of the startup questions
 
+                finish();
                 break;
 
         }

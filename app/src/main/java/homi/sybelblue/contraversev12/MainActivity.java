@@ -18,6 +18,7 @@ import android.widget.LinearLayout;
 //asrugh
 public class MainActivity extends AppCompatActivity implements View.OnClickListener  {
 
+    public static final int NUM_TOPICS = 1;
     public static UserDBHandler userDBHandler;
     public static User currentUser;
     private SharedPreferences preferences;
@@ -63,12 +64,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
 
-        userDBHandler = new UserDBHandler(this, null, 1);
+        userDBHandler = new UserDBHandler(this, null, NUM_TOPICS);
 
         // Check whether the user has set up their "account" yet
         preferences = getSharedPreferences(getString(R.string.preferences_filename), 0);
 
-//        //TODO for debugging the login activity only
+        //TODO for debugging the login activity only
         SharedPreferences.Editor editor = preferences.edit();
         editor.putInt(getString(R.string.user_id_pref_key), -1);
         editor.commit();

@@ -39,10 +39,11 @@ public class LoginConfActivity extends AppCompatActivity implements View.OnClick
                 //TODO generate an actual user ID????
                 SharedPreferences preferences = getSharedPreferences(getString(R.string.preferences_filename), 0);
                 SharedPreferences.Editor editor = preferences.edit();
-                editor.putInt(getString(R.string.user_id_pref_key), 3); //TODO store the data in the database
+                String name = getString(R.string.user_id_pref_key);
+                editor.putInt(name, name.hashCode()); //TODO store the data in the database
                 editor.commit();
 
-                User user = new User(3, new int[]{0});
+                User user = new User(name.hashCode(), new int[MainActivity.NUM_TOPICS]);
                 user.name = displayName;
 
                 MainActivity.userDBHandler.addUser(user);
