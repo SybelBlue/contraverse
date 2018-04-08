@@ -12,15 +12,15 @@ public class User {
 
     private int rating, level;
 
-    public static ArrayList<Topic> topics;
+    public static ArrayList<SpecificQuestion> specificQuestions;
 
     public User(long ID, int[] topicQuestions) {
         this.ID = ID;
-        this.topicQuestions = new int[topics.size()];
+        this.topicQuestions = new int[specificQuestions.size()];
         updateRatingAndLevel();
 
         sfrates = new int[SFCODE_SIZE];
-        topics = new ArrayList<>(15);
+        specificQuestions = new ArrayList<>(15);
     }
 
     public String getName() {
@@ -74,6 +74,26 @@ public class User {
 
     public int getFF() {
         return getCodeCount(SFCode.FF);
+    }
+
+    public void setSS(int count) {
+        setCodeCount(SFCode.SS, count);
+    }
+
+    public void setSF(int count) {
+        setCodeCount(SFCode.SF, count);
+    }
+
+    public void setFS(int count) {
+        setCodeCount(SFCode.FS, count);
+    }
+
+    public void setFF(int count) {
+        setCodeCount(SFCode.FF, count);
+    }
+
+    public void setCodeCount(SFCode code, int count) {
+        sfrates[numberFromCode(code)] = count;
     }
 
     /**

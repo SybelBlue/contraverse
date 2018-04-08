@@ -9,6 +9,7 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
 
     public static UserDBHandler userDBHandler;
+    public static User currentUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +39,8 @@ public class MainActivity extends AppCompatActivity {
         }
         // if they have, get the user's data from our database
         else{
-            userDBHandler.findUser(userID);
+            currentUser = userDBHandler.findUser(userID);
+            toastRelay("Welcome " + currentUser.name + "!");
         }
     }
 

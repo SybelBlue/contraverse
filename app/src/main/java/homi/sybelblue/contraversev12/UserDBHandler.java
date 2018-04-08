@@ -62,8 +62,8 @@ public class UserDBHandler extends SQLiteOpenHelper {
                 " INTEGER," + COLUMN_SF + " INTEGER," + COLUMN_FS + " INTEGER," + COLUMN_FF + " INTEGER,");
 
         for (int i = 0; i < NUM_TOPICS; i++) {
-            CREATE_USER_TOPICS.append("Topic");
-            CREATE_USERS_TABLE.append("Topic");
+            CREATE_USER_TOPICS.append("SpecificQuestion");
+            CREATE_USERS_TABLE.append("SpecificQuestion");
             CREATE_USER_TOPICS.append(i);
             CREATE_USERS_TABLE.append(i);
             CREATE_USER_TOPICS.append(" TEXT,");
