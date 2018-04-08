@@ -144,9 +144,9 @@ public class UserDBHandler extends SQLiteOpenHelper {
         db.close();
     }
 
-    public int getIntegerColumn(long ID, String column) {
+    public int getIntegerColumn(long ID, String column, String tableName) {
         SQLiteDatabase db = this.getWritableDatabase();
-        String query = "SELECT " + column +  " FROM Users WHERE ID = " + ID + ";";
+        String query = "SELECT " + column +  " FROM " + tableName + " WHERE ID = " + ID + ";";
         Cursor cursor = db.rawQuery(query, null);
         if (cursor.moveToFirst()){
             int result = cursor.getInt(0);
@@ -158,9 +158,9 @@ public class UserDBHandler extends SQLiteOpenHelper {
         return -1;
     }
 
-    public String getStringColumn(long ID, String column) {
+    public String getStringColumn(long ID, String column, String tableName) {
         SQLiteDatabase db = this.getWritableDatabase();
-        String query = "SELECT " + column + " FROM Users WHERE ID = " + ID + ";";
+        String query = "SELECT " + column +  " FROM " + tableName + " WHERE ID = " + ID + ";";
         Cursor cursor = db.rawQuery(query, null);
         if (cursor.moveToFirst()) {
             String result = cursor.getString(0);
