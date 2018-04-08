@@ -50,7 +50,7 @@ public class UserDBHandler extends SQLiteOpenHelper {
         values.put(COLUMN_FS, user.getFS());
         values.put(COLUMN_FF, user.getFF());
         for (int i = 0; i < NUM_TOPICS; i++) {
-            values.put("Topics" + i, user.topicQuestions[i]);
+            values.put("Topic" + i, user.topicQuestions[i]);
         }
         SQLiteDatabase db = this.getWritableDatabase();
         db.insert(TABLE_NAME, null, values);
@@ -65,8 +65,8 @@ public class UserDBHandler extends SQLiteOpenHelper {
                 " INTEGER," + COLUMN_SF + " INTEGER," + COLUMN_FS + " INTEGER," + COLUMN_FF + " INTEGER,");
 
         for (int i = 0; i < NUM_TOPICS; i++) {
-            CREATE_USER_TOPICS.append("SpecificQuestion");
-            CREATE_USERS_TABLE.append("SpecificQuestion");
+            CREATE_USER_TOPICS.append("Topic");
+            CREATE_USERS_TABLE.append("Topic");
             CREATE_USER_TOPICS.append(i);
             CREATE_USERS_TABLE.append(i);
             CREATE_USER_TOPICS.append(" TEXT,");

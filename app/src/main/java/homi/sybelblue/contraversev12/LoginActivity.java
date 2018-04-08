@@ -12,7 +12,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private LinearLayout form;
 
     private EditText displayNameView;
-
     public String displayName;
 
 
@@ -20,6 +19,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        setTitle("Make Account");
 
         // set onClickListeners for all buttons
         findViewById(R.id.login_next).setOnClickListener(this);
@@ -44,6 +44,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 intent.putExtra("displayName", displayName);
                 startActivity(intent);
                 //TODO get the responses for the rest of the startup questions
+
                 break;
 
         }
