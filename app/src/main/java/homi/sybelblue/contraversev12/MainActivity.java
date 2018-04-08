@@ -64,6 +64,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
 
+
+
+
         userDBHandler = new UserDBHandler(this, null, NUM_TOPICS);
 
         // Check whether the user has set up their "account" yet
