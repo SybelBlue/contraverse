@@ -1,5 +1,8 @@
 package homi.sybelblue.contraversev12;
 
+import android.content.Context;
+import android.content.Intent;
+
 public class ContraverseUtils {
 
     public static int SFCODE_SIZE = SFCode.values().length;
@@ -42,4 +45,8 @@ public class ContraverseUtils {
         throw new IllegalArgumentException();
     }
 
+    public static void pushOldExtra(Context context, Intent currentIntent, Intent toNewIntent, int stringKey) {
+        String key = context.getString(stringKey);
+        toNewIntent.putExtra(key, currentIntent.getStringExtra(key));
+    }
 }

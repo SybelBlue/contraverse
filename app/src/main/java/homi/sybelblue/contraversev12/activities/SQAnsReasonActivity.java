@@ -8,7 +8,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import homi.sybelblue.contraversev12.ContraverseUtils;
 import homi.sybelblue.contraversev12.R;
+
+import static homi.sybelblue.contraversev12.ContraverseUtils.pushOldExtra;
 
 public class SQAnsReasonActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -54,11 +57,11 @@ public class SQAnsReasonActivity extends AppCompatActivity implements View.OnCli
                 Intent currentIntent = getIntent();
                 Intent intent = new Intent(SQAnsReasonActivity.this, ConvoActivity.class);
 
-                pushOldExtra(currentIntent, intent, R.string.sq_topic_key);
+                pushOldExtra(this, currentIntent, intent, R.string.sq_topic_key);
 
-                pushOldExtra(currentIntent, intent, R.string.sq_question_text);
+                pushOldExtra(this, currentIntent, intent, R.string.sq_question_text);
 
-                pushOldExtra(currentIntent, intent, R.string.sq_response);
+                pushOldExtra(this, currentIntent, intent, R.string.sq_response);
 
                 intent.putExtra(getString(R.string.sq_reasoning), reason);
 
@@ -67,11 +70,6 @@ public class SQAnsReasonActivity extends AppCompatActivity implements View.OnCli
                 finish();
                 break;
         }
-    }
-
-    private void pushOldExtra(Intent currentIntent, Intent toNewIntent, int stringKey) {
-        String key = getString(stringKey);
-        toNewIntent.putExtra(key, currentIntent.getStringExtra(key));
     }
 
 }
