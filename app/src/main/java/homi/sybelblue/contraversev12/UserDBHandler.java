@@ -46,7 +46,7 @@ public class UserDBHandler extends SQLiteOpenHelper {
         StringBuilder CREATE_USER_TOPICS = new StringBuilder("CREATE TABLE " + "Topics" + "(");
         StringBuilder CREATE_USERS_TABLE = new StringBuilder("CREATE TABLE " + USERS_TABLE + "(" + COLUMN_ID +
                 " BIGINT PRIMARY KEY," + COLUMN_NAME + " TEXT," + COLUMN_SS +
-                " INTEGER," + COLUMN_SF + " INTEGER," + COLUMN_FS + " INTEGER," + COLUMN_FF + " INTEGER," + "Rating INTEGER,");
+                " INTEGER," + COLUMN_SF + " INTEGER," + COLUMN_FS + " INTEGER," + COLUMN_FF + " INTEGER,Rating INTEGER,");
 
         for (int i = 0; i < NUM_TOPICS; i++) {
             String var = "Topic" + i;
@@ -105,8 +105,9 @@ public class UserDBHandler extends SQLiteOpenHelper {
             SF = cursor.getInt(3);
             FS = cursor.getInt(4);
             FF = cursor.getInt(5);
-            for (int i = 6; i < NUM_TOPICS; i++) {
-                topicQuestions[i - 6] = cursor.getInt(i);
+            int rating = cursor.getInt(6);
+            for (int i = 7; i < NUM_TOPICS + 7; i++) {
+                topicQuestions[i - 7] = cursor.getInt(i);
             }
             User user = new User(foundID, topicQuestions);
             user.name = name;
@@ -114,7 +115,7 @@ public class UserDBHandler extends SQLiteOpenHelper {
             user.setSF(SF);
             user.setFS(FS);
             user.setFF(FF);
-            user.setRating(generateRating(SS, SF, FS, FF));
+            user.setRating(rating);
             cursor.close();
             db.close();
             return user;
