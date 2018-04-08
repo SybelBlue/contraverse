@@ -51,7 +51,7 @@ public class UserDBHandler extends SQLiteOpenHelper {
         StringBuilder CREATE_USERS_TABLE = new StringBuilder("CREATE TABLE " + USERS_TABLE + "(" + COLUMN_ID +
                 " BIGINT PRIMARY KEY," + COLUMN_NAME + " TEXT," + COLUMN_SS +
                 " INTEGER," + COLUMN_SF + " INTEGER," + COLUMN_FS + " INTEGER," + COLUMN_FF + " INTEGER,");
-        String CREATE_QUESTIONS_TABLE = "CREATE TABLE QUESTIONS(ID BIGINT PRIMARY KEY, Topic TEXT, Level INTEGER, Question TEXT);";
+        String CREATE_QUESTIONS_TABLE = "CREATE TABLE QUESTIONS(Topic TEXT, Level INTEGER, Question TEXT);";
 
         for (String topic : MainActivity.TOPICS) {
 
@@ -71,7 +71,6 @@ public class UserDBHandler extends SQLiteOpenHelper {
 
     public void addQuestion(String topic, String question, int level) {
         ContentValues values = new ContentValues();
-        values.put("ID", System.currentTimeMillis());
         values.put("Topic", topic);
         values.put("Level", level);
         values.put("Question", question);
