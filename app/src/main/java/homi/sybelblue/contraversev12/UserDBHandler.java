@@ -58,22 +58,22 @@ public class UserDBHandler extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         StringBuilder CREATE_USER_TOPICS = new StringBuilder("CREATE TABLE " + "Topics" + "(");
         StringBuilder CREATE_USERS_TABLE = new StringBuilder("CREATE TABLE " + TABLE_NAME + "(" + COLUMN_ID +
-                "INTEGER PRIMARY KEY," + COLUMN_NAME + "TEXT" + COLUMN_SS +
-                "INTEGER," + COLUMN_SF + "INTEGER," + COLUMN_FS + "INTEGER," + COLUMN_FF + "INTEGER ");
+                " INTEGER PRIMARY KEY," + COLUMN_NAME + " TEXT" + COLUMN_SS +
+                " INTEGER," + COLUMN_SF + " INTEGER," + COLUMN_FS + " INTEGER," + COLUMN_FF + " INTEGER,");
 
         for (int i = 0; i < NUM_TOPICS; i++) {
             CREATE_USER_TOPICS.append("Topic");
             CREATE_USERS_TABLE.append("Topic");
             CREATE_USER_TOPICS.append(i);
             CREATE_USERS_TABLE.append(i);
-            CREATE_USER_TOPICS.append("TEXT,");
-            CREATE_USERS_TABLE.append("INTEGER,");
+            CREATE_USER_TOPICS.append(" TEXT,");
+            CREATE_USERS_TABLE.append(" INTEGER,");
         }
 
         CREATE_USER_TOPICS.replace(CREATE_USER_TOPICS.length() - 1, CREATE_USER_TOPICS.length() - 1, "");
         CREATE_USERS_TABLE.replace(CREATE_USERS_TABLE.length() - 1, CREATE_USERS_TABLE.length() - 1, "");
-        CREATE_USER_TOPICS.append(" )");
-        CREATE_USERS_TABLE.append(" )");
+        CREATE_USER_TOPICS.append(")");
+        CREATE_USERS_TABLE.append(")");
         db.execSQL(CREATE_USERS_TABLE.toString());
         db.execSQL(CREATE_USER_TOPICS.toString());
     }
