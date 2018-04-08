@@ -45,7 +45,7 @@ public class UserDBHandler extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         StringBuilder CREATE_USER_TOPICS = new StringBuilder("CREATE TABLE " + "Topics" + "(");
         StringBuilder CREATE_USERS_TABLE = new StringBuilder("CREATE TABLE " + TABLE_NAME + "(" + COLUMN_ID +
-                " INTEGER PRIMARY KEY," + COLUMN_NAME + " TEXT," + COLUMN_SS +
+                " BIGINT PRIMARY KEY," + COLUMN_NAME + " TEXT," + COLUMN_SS +
                 " INTEGER," + COLUMN_SF + " INTEGER," + COLUMN_FS + " INTEGER," + COLUMN_FF + " INTEGER,");
 
         for (int i = 0; i < NUM_TOPICS; i++) {

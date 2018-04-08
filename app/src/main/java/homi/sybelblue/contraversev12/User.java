@@ -23,6 +23,11 @@ public class User {
         updateRatingAndLevel();
     }
 
+    public User(String name, long ID, int[] topicQuestions) {
+        this(ID, topicQuestions);
+        this.name = name;
+    }
+
     public String getName() {
         return name;
     }
