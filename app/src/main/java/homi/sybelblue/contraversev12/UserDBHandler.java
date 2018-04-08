@@ -52,6 +52,9 @@ public class UserDBHandler extends SQLiteOpenHelper {
         for (int i = 0; i < NUM_TOPICS; i++) {
             values.put("Topics" + i, user.topicQuestions[i]);
         }
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.insert(TABLE_NAME, null, values);
+        db.close();
     }
 
     @Override
