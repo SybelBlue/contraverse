@@ -79,7 +79,7 @@ public class UserDBHandler extends SQLiteOpenHelper {
     }
 
     public User findUser(long ID){
-        String query = "SELECT * FROM " + TABLE_NAME + "WHERE " + COLUMN_ID + " = '" + ID + "'";
+        String query = "SELECT * FROM " + TABLE_NAME + " WHERE " + COLUMN_ID + " = '" + ID + "'";
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(query, null);
         long foundID;
