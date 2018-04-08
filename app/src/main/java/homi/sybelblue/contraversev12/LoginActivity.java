@@ -1,15 +1,20 @@
 package homi.sybelblue.contraversev12;
 
+import android.app.Activity;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-public class LoginActivity extends AppCompatActivity {
+import java.util.prefs.Preferences;
 
-    private LinearLayout confirmationLayout;
+public class LoginActivity extends Activity implements View.OnClickListener {
+
+    private ConstraintLayout confirmationLayout;
     private LinearLayout form;
 
     private EditText displayNameView;
@@ -22,6 +27,16 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        // set onClickListeners for all buttons
+        findViewById(R.id.login_back).setOnClickListener(this);
+        findViewById(R.id.login_next).setOnClickListener(this);
+        findViewById(R.id.login_submit).setOnClickListener(this);
+    }
+
+    @Override
+    protected void onStart(){
+        super.onStart();
+
         displayNameView = findViewById(R.id.login_disp_name);
         confirmationLayout = findViewById(R.id.login_confirmation);
         confirmationText = findViewById(R.id.login_confirmation_text);
@@ -32,11 +47,10 @@ public class LoginActivity extends AppCompatActivity {
         confirmationLayout.setVisibility(View.GONE);
 
         //TODO actually ask the startup questions (I think they are officially called Topic Questions)
-
-
     }
 
-    public void onClick(View v){
+    @Override
+    public void onClick(View v) {
         switch (v.getId()){
             case R.id.login_next:
                 String displayName = displayNameView.getText().toString();
@@ -52,7 +66,9 @@ public class LoginActivity extends AppCompatActivity {
                 break;
 
             case R.id.login_submit:
-                //TODO store the data in the database
+                //TODO store the data in the
+                SharedPreferences preferences = getSharedPreferences("", 0);
+                finish();
         }
     }
 
