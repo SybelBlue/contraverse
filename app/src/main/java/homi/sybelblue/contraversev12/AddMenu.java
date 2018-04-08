@@ -1,37 +1,69 @@
 package homi.sybelblue.contraversev12;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Random;
 
+import homi.sybelblue.contraversev12.questions.Prompt;
+import homi.sybelblue.contraversev12.questions.SpecificQuestion;
+
 public class AddMenu extends AppCompatActivity implements View.OnClickListener  {
 
+    private TextView questionTextView;
+    private RadioGroup radioGroup;
+    private Button next;
+
+    private SpecificQuestion specificQuestion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_menu);
-//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
 
+        questionTextView = findViewById(R.id.add_menu_question);
+        radioGroup = findViewById(R.id.add_menu_radios);
+        next = findViewById(R.id.add_menu_next);
+
+        // TODO get SpecificQuestion object from database
+        // for now I have made one up. I don't know if this is exactly the right idea, but it can be changed :)
+        specificQuestion = new SpecificQuestion(
+                new Prompt<>("Which way should the toilet paper roll be hung - loose end in front, or loose end in back?"),
+                new Prompt<>("Why do you think this?"),
+                (short)0);
+
+        questionTextView.setText("TOPIC: " + specificQuestion.topicHeading + "\n"
+                + specificQuestion.multipleChoice.text);
+
+        // we will eventually need to get the text for each radio button for the Specific Question, but for now I have hard-coded them in an array:
+        String[] radioTexts = {"Loose end in front", "Loose end in back"};
+
+        // make a new radio button for each multiple choice answer in the Specific Question.
+        for(String radioText : radioTexts){
+            RadioButton button = new RadioButton(this);
+            button.setText(radioText);
+            // index -1 means the end of the list, and the ViewGroup.LayoutParams just tells it to wrap_content for width and height
+            radioGroup.addView(button, -1,
+                    new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        }
+
+
+        // this is code that we could use to help mock up having multiple possible questions.
         String options[] = {"x","y","z",};
         Random rand = new Random();
         int i = rand.nextInt(options.length);
-
-        TextView ti = new TextView(AddMenu.this);
-        String title = options[i];
-        LinearLayout P1 = (LinearLayout)findViewById(R.id.p1);
-        ti.setText(options[i]);
-        ti.setTag(-1);
-        P1.addView(ti);
-
     }
 
     @Override
@@ -60,6 +92,27 @@ public class AddMenu extends AppCompatActivity implements View.OnClickListener  
 
     @Override
     public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.add_menu_next:
+                Intent intent = new Intent(getApplicationContext(), SQAnsReasonActivity.class);
+                intent.putExtra("topic", specificQuestion.topicHeading);
+                intent.putExtra("questionText", specificQuestion.multipleChoice.text);
+                Button pickedButton = findViewById(radioGroup.getCheckedRadioButtonId());
+                intent.putExtra("response", pickedButton.getText());
+                startActivity(intent);
+                // TODO I cannot actually get the intent to go to the next activity! Oh well
+                // if a radio button is selected, allow user to move on
+                if(radioGroup.getCheckedRadioButtonId() != -1){
+
+                }
+                //TODO this does not work maybe? IT doens't make a toast for sure but eh
+                else{
+                    Toast.makeText(getApplicationContext(), "Please select an option.", Toast.LENGTH_SHORT).show();
+                }
+                finish();
+                break;
+        }
+
 //        String str=v.getTag().toString();
 //        if(str.equals("buttonNew")) {
 //            Toast.makeText(getApplicationContext(), "test", Toast.LENGTH_SHORT).show();

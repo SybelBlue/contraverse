@@ -45,7 +45,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 Intent intent = new Intent(getApplicationContext(), LoginConfActivity.class);
                 intent.putExtra("displayName", displayName);
                 startActivity(intent);
-                //TODO get the responses for the rest of the startup questions
 
                 finish();
                 break;
