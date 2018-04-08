@@ -36,34 +36,4 @@
 
     </LinearLayout>
 
-    <android.support.constraint.ConstraintLayout
-        android:id="@+id/login_confirmation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:visibility="gone">
-
-        <TextView
-            android:id="@+id/login_confirmation_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="We don't have any info for you yet."/>
-
-        <Button
-            android:id="@+id/login_back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/login_back"
-            app:layout_constraintTop_toBottomOf="@+id/login_confirmation_text"/>
-        <Button
-            android:id="@+id/login_submit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/login_submit"
-            app:layout_constraintTop_toBottomOf="@+id/login_confirmation_text"
-            app:layout_constraintRight_toRightOf="parent"/>
-
-
-    </android.support.constraint.ConstraintLayout>
-
 </android.support.constraint.ConstraintLayout>

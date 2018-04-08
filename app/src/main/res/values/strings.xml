@@ -6,6 +6,7 @@
     <string name="login_next">Next</string>
     <string name="login_back">&lt;</string>
     <string name="login_submit">Submit</string>
+    <string name="login_nothing_yet_text">We don&apos;t have any data for you yet. Please go back and enter some!</string>
 
     <string name="preferences_filename">shared_preferences</string>
 </resources>
