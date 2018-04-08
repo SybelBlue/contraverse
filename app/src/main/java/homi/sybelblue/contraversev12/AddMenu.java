@@ -7,9 +7,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -64,15 +66,41 @@ public class AddMenu extends AppCompatActivity implements View.OnClickListener  
         String options[] = {"x","y","z",};
         Random rand = new Random();
         int i = rand.nextInt(options.length);
+
+        TextView ti = new TextView(AddMenu.this);
+        String title = options[i];
+        LinearLayout P1 = (LinearLayout)findViewById(R.id.p1);
+        ti.setText(options[i]);
+        ti.setTag(-1);
+        P1.addView(ti);
+
+        String results[] = new String[options.length]; //The Logan Autocomplete tried correcting this, if not so, fix
+
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
 
+
+
+    public void onRadioButtonClicked(View view) {
+        // Is the button now checked?
+        boolean checked = ((RadioButton) view).isChecked();
+            int i;
+        // Check which radio button was clicked
+        switch(view.getId()) {
+            case R.id.radioButton:
+                if (checked)
+                    i = 1;
+                    break;
+            case R.id.radioButton2:
+                if (checked)
+                    i = 2;
+                    break;
+            case R.id.radioButton3:
+                if (checked)
+                    i = 3;
+                    break;
+        }
+    }
 
 
     @Override
