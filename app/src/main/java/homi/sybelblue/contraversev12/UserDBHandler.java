@@ -25,7 +25,7 @@ public class UserDBHandler extends SQLiteOpenHelper {
 
     public String getTableString() {
         StringBuilder result = new StringBuilder();
-        String query = "SELECT*FROM " + TABLE_NAME;
+        String query = "SELECT*FROM " + TABLE_NAME + ";";
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(query, null);
         while (cursor.moveToNext()) {
@@ -51,7 +51,7 @@ public class UserDBHandler extends SQLiteOpenHelper {
         for (int i = 0; i < NUM_TOPICS; i++) {
             String var = "Topic" + i;
 
-            CREATE_USER_TOPICS.append("Yellow");
+            CREATE_USER_TOPICS.append("var");
             CREATE_USER_TOPICS.append(" TEXT,");
 
             CREATE_USERS_TABLE.append(var);
@@ -60,8 +60,8 @@ public class UserDBHandler extends SQLiteOpenHelper {
 
         CREATE_USER_TOPICS.replace(CREATE_USER_TOPICS.length() - 1, CREATE_USER_TOPICS.length(), "");
         CREATE_USERS_TABLE.replace(CREATE_USERS_TABLE.length() - 1, CREATE_USERS_TABLE.length(), "");
-        CREATE_USER_TOPICS.append(")");
-        CREATE_USERS_TABLE.append(")");
+        CREATE_USER_TOPICS.append(");");
+        CREATE_USERS_TABLE.append(");");
         db.execSQL(CREATE_USERS_TABLE.toString());
         db.execSQL(CREATE_USER_TOPICS.toString());
     }
@@ -83,7 +83,7 @@ public class UserDBHandler extends SQLiteOpenHelper {
     }
 
     public User findUser(long ID){
-        String query = "SELECT * FROM " + TABLE_NAME + " WHERE " + COLUMN_ID + " = " + ID;
+        String query = "SELECT * FROM " + TABLE_NAME + " WHERE " + COLUMN_ID + " = " + ID + ";";
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(query, null);
         long foundID;
