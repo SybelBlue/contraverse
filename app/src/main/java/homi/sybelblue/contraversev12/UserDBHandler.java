@@ -46,7 +46,7 @@ public class UserDBHandler extends SQLiteOpenHelper {
         StringBuilder CREATE_USER_TOPICS = new StringBuilder("CREATE TABLE " + "Topics" + "(");
         StringBuilder CREATE_USERS_TABLE = new StringBuilder("CREATE TABLE " + USERS_TABLE + "(" + COLUMN_ID +
                 " BIGINT PRIMARY KEY," + COLUMN_NAME + " TEXT," + COLUMN_SS +
-                " INTEGER," + COLUMN_SF + " INTEGER," + COLUMN_FS + " INTEGER," + COLUMN_FF + " INTEGER," + "UR" + " INTEGER,");
+                " INTEGER," + COLUMN_SF + " INTEGER," + COLUMN_FS + " INTEGER," + COLUMN_FF + " INTEGER," + "Rating INTEGER,");
 
         for (int i = 0; i < NUM_TOPICS; i++) {
             String var = "Topic" + i;
@@ -78,7 +78,7 @@ public class UserDBHandler extends SQLiteOpenHelper {
         values.put(COLUMN_SF, SF);
         values.put(COLUMN_FS, FS);
         values.put(COLUMN_FF, FF);
-        values.put("UR", generateRating(SS, SF, FS, FF));
+        values.put("Rating", generateRating(SS, SF, FS, FF));
         for (int i = 0; i < NUM_TOPICS; i++) {
             values.put("Topic" + i, user.topicQuestions[i]);
         }
