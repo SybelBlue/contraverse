@@ -34,7 +34,7 @@ public class MyConvoRecyclerViewAdapter extends RecyclerView.Adapter<MyConvoRecy
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view;
 
-        preferences = mContext.getSharedPreferences("", 0);
+        preferences = mContext.getSharedPreferences(mContext.getString(R.string.preferences_filename), 0);
 
         if (viewType == VIEW_TYPE_MESSAGE_SENT) {
             view = LayoutInflater.from(parent.getContext())

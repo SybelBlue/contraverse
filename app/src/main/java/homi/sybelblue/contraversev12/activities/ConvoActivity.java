@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import homi.sybelblue.contraversev12.Response;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import homi.sybelblue.contraversev12.ContraverseUtils;
@@ -36,10 +37,11 @@ public class ConvoActivity extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_convo);
 
         //TODO this is just me testing and making up a message
-        SharedPreferences preferences = getSharedPreferences("", 0);
+        SharedPreferences preferences = getSharedPreferences(getString(R.string.preferences_filename), 0);
         long id = preferences.getLong(getString(R.string.user_id_pref_key), -1);
         User testUser = MainActivity.userDBHandler.findUser(id);
         Response<String> testMessage = new Response(testUser, "Ths is a test message");
+        mMessageList = new ArrayList<>();
         mMessageList.add(testMessage);
 
         mMessageRecycler = (RecyclerView) findViewById(R.id.reyclerview_message_list);
