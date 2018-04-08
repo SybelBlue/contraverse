@@ -12,6 +12,7 @@ import android.widget.TextView;
 import homi.sybelblue.contraversev12.Response;
 
 import homi.sybelblue.contraversev12.R;
+import homi.sybelblue.contraversev12.User;
 
 import java.util.List;
 
@@ -20,11 +21,11 @@ public class MyConvoRecyclerViewAdapter extends RecyclerView.Adapter<MyConvoRecy
     private static final int VIEW_TYPE_MESSAGE_SENT = 1;
     private static final int VIEW_TYPE_MESSAGE_RECEIVED = 2;
 
-    private final List<Response> mValues;
+    private final List<Response<String>> mValues;
     private Context mContext;
     private SharedPreferences preferences;
 
-    public MyConvoRecyclerViewAdapter(Context context, List<Response> items) {
+    public MyConvoRecyclerViewAdapter(Context context, List<Response<String>> items) {
         mValues = items;
         mContext = context;
     }
@@ -91,7 +92,7 @@ public class MyConvoRecyclerViewAdapter extends RecyclerView.Adapter<MyConvoRecy
         public final View mView;
         public final TextView mIdView;
         public final TextView mContentView;
-        public Response mItem;
+        public Response<String> mItem;
 
         public ViewHolder(View view) {
             super(view);
@@ -118,7 +119,7 @@ public class MyConvoRecyclerViewAdapter extends RecyclerView.Adapter<MyConvoRecy
             profileImage = (ImageView) itemView.findViewById(R.id.image_message_profile);
         }
 
-        void bind(Response message) {
+        void bind(Response<String> message) {
             messageText.setText(message.response.toString());
 
             // Format the stored timestamp into a readable String using method.
@@ -139,7 +140,7 @@ public class MyConvoRecyclerViewAdapter extends RecyclerView.Adapter<MyConvoRecy
             timeText = (TextView) itemView.findViewById(R.id.text_message_time);
         }
 
-        void bind(Response message) {
+        void bind(Response<String> message) {
             messageText.setText(message.response.toString());
 
             // Format the stored timestamp into a readable String using method.

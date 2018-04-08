@@ -1,6 +1,7 @@
 package homi.sybelblue.contraversev12.activities;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -17,6 +18,7 @@ import java.util.List;
 
 import homi.sybelblue.contraversev12.ContraverseUtils;
 import homi.sybelblue.contraversev12.R;
+import homi.sybelblue.contraversev12.User;
 
 import static homi.sybelblue.contraversev12.ContraverseUtils.toastRelay;
 
@@ -24,7 +26,7 @@ public class ConvoActivity extends AppCompatActivity implements View.OnClickList
 
     private RecyclerView mMessageRecycler;
     private MyConvoRecyclerViewAdapter mMessageAdapter;
-    private List<Response> mMessageList;
+    private List<Response<String>> mMessageList;
 
     private String title;
 
@@ -33,9 +35,17 @@ public class ConvoActivity extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_convo);
 
+        //TODO this is just me testing and making up a message
+        SharedPreferences preferences = getSharedPreferences("", 0);
+        long id = preferences.getLong(getString(R.string.user_id_pref_key), -1);
+        User testUser = MainActivity.userDBHandler.findUser(id);
+        Response<String> testMessage = new Response(testUser, "Ths is a test message");
+        mMessageList.add(testMessage);
+
         mMessageRecycler = (RecyclerView) findViewById(R.id.reyclerview_message_list);
         mMessageAdapter = new MyConvoRecyclerViewAdapter(this, mMessageList);
         mMessageRecycler.setLayoutManager(new LinearLayoutManager(this));
+
 
         setTitle(title = getIntent().getStringExtra(getString(R.string.sq_topic_key)));
     }

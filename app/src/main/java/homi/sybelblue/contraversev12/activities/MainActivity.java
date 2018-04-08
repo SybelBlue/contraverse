@@ -98,7 +98,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //            ContraverseUtils.toastRelay(this, "Error Connecting: See LogCat");
 //            e.printStackTrace();
 //        }
-        //TODO for debugging the login activity only
+//        TODO for debugging the login activity only
 //        SharedPreferences.Editor editor = preferences.edit();
 //        editor.putLong(getString(R.string.user_id_pref_key), -1);
 //        editor.commit();
@@ -140,7 +140,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         else{
             currentUser = userDBHandler.findUser(userID);
             if(currentUser != null){
-                ContraverseUtils.toastRelay(this,"Welcome " + currentUser.name + "!");
+                int rating = userDBHandler.getRating(userID);
+                ContraverseUtils.toastRelay(this,"Welcome " + currentUser.name + "! Rating: " + rating);
             } else {
                 ContraverseUtils.toastRelay(this,"Welcome! We didn't find your info.");
             }
