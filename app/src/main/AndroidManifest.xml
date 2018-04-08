@@ -64,18 +64,22 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activities.MainActivity" />
         </activity>
-        <activity android:name=".activities.ViewSQResponsesActivity"
+        <activity
+            android:name=".activities.ViewSQResponsesActivity"
             android:parentActivityName=".activities.ConvoActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activities.ConvoActivity" />
         </activity>
-            <activity android:name=".activities.End"
-                android:parentActivityName=".activities.MainActivity">
-                <meta-data
-                    android:name="android.support.PARENT_ACTIVITY"
-                    android:value=".activities.ConvoActivity" />
-            </activity>
+        <activity
+            android:name=".activities.End"
+            android:parentActivityName=".activities.MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.ConvoActivity" />
+        </activity>
+        <activity android:name=".activities.SuccessFailActivity" />
+        <activity android:name=".activities.RatingActivity"></activity>
     </application>
 
 </manifest>

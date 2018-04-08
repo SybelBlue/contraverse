@@ -17,10 +17,11 @@ import homi.sybelblue.contraversev12.ContraverseUtils;
 import homi.sybelblue.contraversev12.R;
 import homi.sybelblue.contraversev12.User;
 import homi.sybelblue.contraversev12.UserDBHandler;
+import homi.sybelblue.contraversev12.dummy.DummyContent;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener  {
 
-    public static final String[] TOPICS = new String[]{"Fluff", "Gun Control", "Economics", "Gender Identity"};
+    public static final String[] TOPICS = new String[]{"Fluff", "Gun_Control", "Economics", "Gender_Identity"};
     public static final int NUM_TOPICS = TOPICS.length;
     public static final String APP_ID = "3DD0EDE4-A184-4C09-955F-2DAB409EDBA1"; //yay security!
 
@@ -66,6 +67,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             b1.setOnClickListener(v -> {
                 intent.putExtra(getString(R.string.sq_topic_key), text);
+
+                if(text == "Puppy Kisses"){
+                    intent.putExtra("convo", DummyContent.makePuppyConvo().encode());
+                    intent.putExtra("displayConvo", true);
+                }
+
                 startActivity(intent);
             });
         }
@@ -100,9 +107,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //            e.printStackTrace();
 //        }
 //        TODO for debugging the login activity only
-//        SharedPreferences.Editor editor = preferences.edit();
-//        editor.putLong(getString(R.string.user_id_pref_key), -1);
-//        editor.commit();
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putLong(getString(R.string.user_id_pref_key), -1);
+        editor.commit();
     }
 
     @Override

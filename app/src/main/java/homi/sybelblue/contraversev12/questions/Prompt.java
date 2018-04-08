@@ -1,7 +1,5 @@
 package homi.sybelblue.contraversev12.questions;
 
-import homi.sybelblue.contraversev12.Response;
-
 public class Prompt<T> {
 
     public final String text;

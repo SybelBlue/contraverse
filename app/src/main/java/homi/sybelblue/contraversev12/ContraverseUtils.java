@@ -12,7 +12,7 @@ public class ContraverseUtils {
         switch (code) {
             case Success:
                 return 0;
-            case Fail:
+            case Failure:
                 return 1;
             case SS:
                 return 2;
@@ -32,7 +32,7 @@ public class ContraverseUtils {
             case 0:
                 return SFCode.Success;
             case 1:
-                return SFCode.Fail;
+                return SFCode.Failure;
             case 2:
                 return SFCode.SS;
             case 3:

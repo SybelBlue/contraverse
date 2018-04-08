@@ -21,8 +21,8 @@ public class ViewSQResponsesActivity extends AppCompatActivity {
         ((TextView)findViewById(R.id.recipientResponses)).setText(DUMMY_STRING);
         String opinion = getIntent().getStringExtra(getString(R.string.sq_response));
         String reasoning = getIntent().getStringExtra(getString(R.string.sq_reasoning));
-        opinion = opinion.length() > 0? opinion : "Not Found";
-        reasoning = reasoning.length() > 0? reasoning : "Not Found";
+        opinion = opinion != null? opinion : "Not Found";
+        reasoning = reasoning != null? reasoning : "Not Found";
         String purple = MainActivity.currentUser.name + '\n' +
                 opinion + '\n' + reasoning;
         ((TextView)findViewById(R.id.senderResponses)).setText(purple);

@@ -9,10 +9,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import homi.sybelblue.contraversev12.Response;
+import homi.sybelblue.contraversev12.questions.Response;
 
 import homi.sybelblue.contraversev12.R;
-import homi.sybelblue.contraversev12.User;
 
 import java.util.List;
 
