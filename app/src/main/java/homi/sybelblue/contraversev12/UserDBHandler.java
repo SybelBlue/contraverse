@@ -50,7 +50,7 @@ public class UserDBHandler extends SQLiteOpenHelper {
         StringBuilder CREATE_USER_TOPICS = new StringBuilder("CREATE TABLE " + "Topics" + "(");
         StringBuilder CREATE_USERS_TABLE = new StringBuilder("CREATE TABLE " + USERS_TABLE + "(" + COLUMN_ID +
                 " BIGINT PRIMARY KEY," + COLUMN_NAME + " TEXT," + COLUMN_SS +
-                " INTEGER," + COLUMN_SF + " INTEGER," + COLUMN_FS + " INTEGER," + COLUMN_FF + " INTEGER,");
+                " INTEGER," + COLUMN_SF + " INTEGER," + COLUMN_FS + " INTEGER," + COLUMN_FF + " INTEGER, Economics INTEGER,");
         String CREATE_QUESTIONS_TABLE = "CREATE TABLE QUESTIONS(Topic TEXT, Level INTEGER, Question TEXT);";
 
         for (int i = 0; i < NUM_TOPICS; i++) {
