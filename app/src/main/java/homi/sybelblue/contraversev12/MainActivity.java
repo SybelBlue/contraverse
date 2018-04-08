@@ -63,7 +63,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         buttonNew.setOnClickListener(MainActivity.this);
 
 
-
+//        Button sett = new Button(MainActivity.this);
+//        LinearLayout p4 = (LinearLayout)findViewById(R.id.p14);
+//        sett.setTag(-2);
+//        p4.addView(sett);
+//        sett.setOnClickListener(MainActivity.this);
 
 
 
@@ -82,33 +86,47 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
+
         return true;
     }
 
 
-
-
     @Override
-    protected void onStart(){
-        super.onStart();
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.action_settings:
+                Toast.makeText(getApplicationContext(), "we don here " , Toast.LENGTH_SHORT).show();
 
-        long userID = preferences.getLong(getString(R.string.user_id_pref_key), -1); // i = -1 means the default return val is -1
-        // If they have not, start the user profile setup activity
-        if(userID == -1){
-            Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-            startActivity(intent);
-        }
-        // if they have, get the user's data from our database
-        else{
-            currentUser = userDBHandler.findUser(userID);
-            if(currentUser != null){
-                toastRelay("Welcome " + currentUser.name + "!");
-            } else {
-                toastRelay("Welcome! We didn't find your info.");
-            }
-
+            default:
+                return super.onOptionsItemSelected(item);
         }
     }
+
+
+//    @Override
+//    protected void onStart(){
+//        super.onStart();
+//
+//        long userID = preferences.getLong(getString(R.string.user_id_pref_key), -1); // i = -1 means the default return val is -1
+//        toastRelay(userID + "");
+//        // If they have not, start the user profile setup activity
+//        if(userID == -1){
+//            Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+//            startActivity(intent);
+//        }
+//        // if they have, get the user's data from our database
+//        else{
+//            currentUser = userDBHandler.findUser(userID);
+//            if(currentUser != null){
+//                toastRelay("Welcome " + currentUser.name + "!");
+//            } else {
+//                toastRelay("Welcome! We didn't find your info.");
+//                System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&" + userDBHandler.getTableString());
+//            }
+//
+//        }
+//    }
 
     private void toastRelay(CharSequence toast) {
         Toast.makeText(MainActivity.this, toast, Toast.LENGTH_SHORT).show();
@@ -119,7 +137,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         String str = v.getTag().toString();
         if (str.equals("-1")) {
             startActivity(new Intent(MainActivity.this, AddMenu.class));
-        } else {
+        }
+        else {
             Toast.makeText(getApplicationContext(), "going to conversation " , Toast.LENGTH_SHORT).show();
         }
     }

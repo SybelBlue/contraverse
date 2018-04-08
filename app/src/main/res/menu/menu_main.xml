@@ -2,9 +2,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="homi.sybelblue.contraversev12.MainActivity">
+
     <item
         android:id="@+id/action_settings"
-        android:orderInCategory="100"
+        android:orderInCategory="1"
         android:title="settings"
-        app:showAsAction="never" />
+        app:showAsAction="collapseActionView"/>
+    <item
+        android:id="@+id/action_info"
+        android:orderInCategory="2"
+        android:title="info"
+        app:showAsAction="collapseActionView"/>
 </menu>
