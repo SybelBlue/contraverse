@@ -124,18 +124,30 @@ public class UserDBHandler extends SQLiteOpenHelper {
     }
 
     public void incrementSS(long ID) {
-        String getValsQuery = "SELECT SS, SF, FS, FF FROM USERS WHERE ID = " + ID + ";";
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery(getValsQuery, null);
-        if (cursor.moveToFirst()) {
-            int SS = cursor.getInt(0);
-            int SF = cursor.getInt(1);
-            int FS = cursor.getInt(2);
-            int FF = cursor.getInt(3);
-            String query = "UPDATE Users SET SS = SS + 1 WHERE ID = " + ID + ";";
-            db.execSQL(query);
-            cursor.close();
-        }
+        String query = "UPDATE Users SET SS = SS + 1 WHERE ID = " + ID + ";";
+        db.execSQL(query, null);
+        db.close();
+    }
+
+    public void incrementSF(long ID) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "UPDATE Users SET SF = SF + 1 WHERE ID = " + ID + ";";
+        db.execSQL(query, null);
+        db.close();
+    }
+
+    public void incrementFS(long ID) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "UPDATE Users SET FS = FS + 1 WHERE ID = " + ID + ";";
+        db.execSQL(query, null);
+        db.close();
+    }
+
+    public void incrementFF(long ID) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "UPDATE Users SET FF = FF + 1 WHERE ID = " + ID + ";";
+        db.execSQL(query, null);
         db.close();
     }
 
