@@ -37,6 +37,8 @@ public class ConvoActivity extends AppCompatActivity implements View.OnClickList
 
         setTitle(title = getIntent().getStringExtra(getString(R.string.sq_topic_key)).replaceAll("_", " "));
 
+        findViewById(R.id.Advance).setOnClickListener(this);
+
         //TODO this is just me testing and making up a message
 //        SharedPreferences preferences = getSharedPreferences(getString(R.string.preferences_filename), 0);
 //        long id = preferences.getLong(getString(R.string.user_id_pref_key), -1);
@@ -80,6 +82,11 @@ public class ConvoActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public void onClick(View v){
         switch (v.getId()){
+            case R.id.Advance:
+                Intent intent = new Intent(this, SuccessFailActivity.class);
+                startActivity(intent);
+                finish();
+                break;
             default:
                 toastRelay(this, "onClick!");
         }
