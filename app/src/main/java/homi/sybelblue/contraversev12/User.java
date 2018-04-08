@@ -37,7 +37,7 @@ public class User {
     /**
      * Records that User had an incident with code.
      * If code is SF or SS, Success is also incremented.
-     * If code is FS or FF, Fail is also incremented.
+     * If code is FS or FF, Failure is also incremented.
      *
      * @param code code to record
      */
@@ -51,7 +51,7 @@ public class User {
                 break;
             case FS:
             case FF:
-                sfrates[numberFromCode(SFCode.Fail)]++;
+                sfrates[numberFromCode(SFCode.Failure)]++;
                 break;
         }
 

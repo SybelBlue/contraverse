@@ -1,9 +1,17 @@
 package homi.sybelblue.contraversev12.dummy;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import homi.sybelblue.contraversev12.Convo;
+import homi.sybelblue.contraversev12.User;
+import homi.sybelblue.contraversev12.activities.MainActivity;
+import homi.sybelblue.contraversev12.questions.Prompt;
+import homi.sybelblue.contraversev12.questions.Response;
+import homi.sybelblue.contraversev12.questions.SpecificQuestion;
 
 /**
  * Helper class for providing sample content for user interfaces created by
@@ -68,5 +76,53 @@ public class DummyContent {
         public String toString() {
             return content;
         }
+    }
+
+
+    public static Convo makePuppyConvo() {
+        User u1 = MainActivity.currentUser, u2 = new User(10000001,new int[0]);
+        u2.name = "John Doe";
+        Prompt<Integer> p1 = new Prompt<Integer>("How many puppy kisses do you want?");
+        p1.setResponse(new Response<Integer>(u1,0));
+        Prompt<String> p2 = new Prompt<>("Do you like slobber?");
+        p2.setResponse(new Response<>(u1,"Of course not, but I love puppies!"));
+
+        return new Convo(new Date(),u1,u2,
+                new SpecificQuestion(p1,p2,(short)0),
+                new Response<String>(u1, "I have 4 dogs"),
+                new Response<String>(u1, "How many dogs do you have?"),
+                new Response<String>(u1, "I don't have any. They destroy the furniture"));
+    }
+
+
+    public static Convo makeHotDogConvo() {
+        User u1 = MainActivity.currentUser, u2 = new User(10000001,new int[0]);
+        u2.name = "John Doe";
+        Prompt<Integer> p1 = new Prompt<Integer>("How many puppy kisses do you want?");
+        p1.setResponse(new Response<Integer>(u1,0));
+        Prompt<String> p2 = new Prompt<>("Do you like slobber?");
+        p2.setResponse(new Response<>(u1,"Of course not, but I love puppies!"));
+
+        return new Convo(new Date(),u1,u2,
+                new SpecificQuestion(p1,p2,(short)0),
+                new Response<String>(u1, "I have 4 dogs"),
+                new Response<String>(u1, "How many dogs do you have?"),
+                new Response<String>(u1, "I don't have any. They destroy the furniture"));
+    }
+
+
+    public static Convo makeCoffeeTeaConvo() {
+        User u1 = MainActivity.currentUser, u2 = new User(10000001,new int[0]);
+        u2.name = "John Doe";
+        Prompt<Integer> p1 = new Prompt<Integer>("How many puppy kisses do you want?");
+        p1.setResponse(new Response<Integer>(u1,0));
+        Prompt<String> p2 = new Prompt<>("Do you like slobber?");
+        p2.setResponse(new Response<>(u1,"Of course not, but I love puppies!"));
+
+        return new Convo(new Date(),u1,u2,
+                new SpecificQuestion(p1,p2,(short)0),
+                new Response<String>(u1, "I have 4 dogs"),
+                new Response<String>(u1, "How many dogs do you have?"),
+                new Response<String>(u1, "I don't have any. They destroy the furniture"));
     }
 }

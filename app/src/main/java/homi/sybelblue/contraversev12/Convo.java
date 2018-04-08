@@ -1,9 +1,11 @@
 package homi.sybelblue.contraversev12;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 
+import homi.sybelblue.contraversev12.questions.Response;
 import homi.sybelblue.contraversev12.activities.MainActivity;
 import homi.sybelblue.contraversev12.questions.SpecificQuestion;
 

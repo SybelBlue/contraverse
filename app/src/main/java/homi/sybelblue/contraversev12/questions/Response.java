@@ -1,6 +1,8 @@
-package homi.sybelblue.contraversev12;
+package homi.sybelblue.contraversev12.questions;
 
 import java.util.Date;
+
+import homi.sybelblue.contraversev12.User;
 
 public class Response<T> {
 
