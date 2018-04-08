@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.sendbird.android.SendBird;
 
+import homi.sybelblue.contraversev12.ContraverseUtils;
 import homi.sybelblue.contraversev12.R;
 import homi.sybelblue.contraversev12.User;
 import homi.sybelblue.contraversev12.UserDBHandler;
@@ -112,29 +113,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
 
-//    @Override
-//    protected void onStart(){
-//        super.onStart();
-//
-//        long userID = preferences.getLong(getString(R.string.user_id_pref_key), -1); // i = -1 means the default return val is -1
-//        toastRelay(userID + "");
-//        // If they have not, start the user profile setup activity
-//        if(userID == -1){
-//            Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-//            startActivity(intent);
-//        }
-//        // if they have, get the user's data from our database
-//        else{
-//            currentUser = userDBHandler.findUser(userID);
-//            if(currentUser != null){
-//                toastRelay("Welcome " + currentUser.name + "!");
-//            } else {
-//                toastRelay("Welcome! We didn't find your info.");
-//                System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&" + userDBHandler.getTableString());
-//            }
-//
-//        }
-//    }
+    @Override
+    protected void onStart(){
+        super.onStart();
+
+        long userID = preferences.getLong(getString(R.string.user_id_pref_key), -1); // i = -1 means the default return val is -1
+        ContraverseUtils.toastRelay(this,userID + "");
+        // If they have not, start the user profile setup activity
+        if(userID == -1){
+            Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+            startActivity(intent);
+        }
+        // if they have, get the user's data from our database
+        else{
+            currentUser = userDBHandler.findUser(userID);
+            if(currentUser != null){
+                ContraverseUtils.toastRelay(this,"Welcome " + currentUser.name + "!");
+            } else {
+                ContraverseUtils.toastRelay(this,"Welcome! We didn't find your info.");
+            }
+
+        }
+    }
 
     @Override
     public void onClick(View v) {
