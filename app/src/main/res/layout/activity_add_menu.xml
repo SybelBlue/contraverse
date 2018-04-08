@@ -19,5 +19,6 @@
         android:text="TextView"
         android:textAppearance="@style/TextAppearance.AppCompat.Title"
         tools:layout_editor_absoluteX="151dp"
-        tools:layout_editor_absoluteY="16dp" />
+        tools:layout_editor_absoluteY="16dp"
+        tools:ignore="MissingConstraints" />
 </android.support.constraint.ConstraintLayout>
