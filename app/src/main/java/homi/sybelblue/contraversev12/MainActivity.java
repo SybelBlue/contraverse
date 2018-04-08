@@ -15,7 +15,7 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
-
+//asrugh
 public class MainActivity extends AppCompatActivity implements View.OnClickListener  {
 
     public static UserDBHandler userDBHandler;
