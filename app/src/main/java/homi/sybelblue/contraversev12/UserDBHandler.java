@@ -51,7 +51,7 @@ public class UserDBHandler extends SQLiteOpenHelper {
         for (int i = 0; i < NUM_TOPICS; i++) {
             String var = "Topic" + i;
 
-            CREATE_USER_TOPICS.append("var");
+            CREATE_USER_TOPICS.append(var);
             CREATE_USER_TOPICS.append(" TEXT,");
 
             CREATE_USERS_TABLE.append(var);
