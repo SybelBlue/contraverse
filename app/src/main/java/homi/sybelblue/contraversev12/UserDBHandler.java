@@ -46,7 +46,7 @@ public class UserDBHandler extends SQLiteOpenHelper {
         StringBuilder CREATE_USER_TOPICS = new StringBuilder("CREATE TABLE " + "Topics" + "(");
         StringBuilder CREATE_USERS_TABLE = new StringBuilder("CREATE TABLE " + USERS_TABLE + "(" + COLUMN_ID +
                 " BIGINT PRIMARY KEY," + COLUMN_NAME + " TEXT," + COLUMN_SS +
-                " INTEGER," + COLUMN_SF + " INTEGER," + COLUMN_FS + " INTEGER," + COLUMN_FF + " INTEGER,Rating INTEGER,");
+                " INTEGER," + COLUMN_SF + " INTEGER," + COLUMN_FS + " INTEGER," + COLUMN_FF + " INTEGER,");
 
         for (int i = 0; i < NUM_TOPICS; i++) {
             String var = "Topic" + i;
@@ -58,10 +58,8 @@ public class UserDBHandler extends SQLiteOpenHelper {
             CREATE_USERS_TABLE.append(" INTEGER,");
         }
 
-        CREATE_USER_TOPICS.replace(CREATE_USER_TOPICS.length() - 1, CREATE_USER_TOPICS.length(), "");
-        CREATE_USERS_TABLE.replace(CREATE_USERS_TABLE.length() - 1, CREATE_USERS_TABLE.length(), "");
-        CREATE_USER_TOPICS.append(");");
-        CREATE_USERS_TABLE.append(");");
+        CREATE_USER_TOPICS.replace(CREATE_USER_TOPICS.length() - 1, CREATE_USER_TOPICS.length(), ");");
+        CREATE_USERS_TABLE.replace(CREATE_USERS_TABLE.length() - 1, CREATE_USERS_TABLE.length(), ");");
         db.execSQL(CREATE_USERS_TABLE.toString());
         db.execSQL(CREATE_USER_TOPICS.toString());
     }
@@ -78,7 +76,6 @@ public class UserDBHandler extends SQLiteOpenHelper {
         values.put(COLUMN_SF, SF);
         values.put(COLUMN_FS, FS);
         values.put(COLUMN_FF, FF);
-        values.put("Rating", generateRating(SS, SF, FS, FF));
         for (int i = 0; i < NUM_TOPICS; i++) {
             values.put("Topic" + i, user.topicQuestions[i]);
         }
@@ -105,9 +102,8 @@ public class UserDBHandler extends SQLiteOpenHelper {
             SF = cursor.getInt(3);
             FS = cursor.getInt(4);
             FF = cursor.getInt(5);
-            int rating = cursor.getInt(6);
-            for (int i = 7; i < NUM_TOPICS + 7; i++) {
-                topicQuestions[i - 7] = cursor.getInt(i);
+            for (int i = 6; i < NUM_TOPICS + 7; i++) {
+                topicQuestions[i - 6] = cursor.getInt(i);
             }
             User user = new User(foundID, topicQuestions);
             user.name = name;
@@ -115,7 +111,6 @@ public class UserDBHandler extends SQLiteOpenHelper {
             user.setSF(SF);
             user.setFS(FS);
             user.setFF(FF);
-            user.setRating(rating);
             cursor.close();
             db.close();
             return user;
@@ -137,12 +132,16 @@ public class UserDBHandler extends SQLiteOpenHelper {
             int SF = cursor.getInt(1);
             int FS = cursor.getInt(2);
             int FF = cursor.getInt(3);
-            int rating = generateRating(SS, SF, FS, FF);
-            String query = "UPDATE Users SET SS = SS + 1, Rating = " + rating + " WHERE ID = " + ID + ";";
+            String query = "UPDATE Users SET SS = SS + 1 WHERE ID = " + ID + ";";
             db.execSQL(query);
             cursor.close();
         }
         db.close();
+    }
+
+    public int getRating(long ID) {
+        User user = findUser(ID);
+        return generateRating(user.getSS(), user.getSF(), user.getFS(), user.getFF());
     }
 
     public int getIntegerColumn(long ID, String column, String tableName) {
