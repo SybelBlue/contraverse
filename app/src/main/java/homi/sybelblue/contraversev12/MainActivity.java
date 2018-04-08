@@ -25,8 +25,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+//        setSupportActionBar(toolbar);
+        setTitle("Welcome to Contraverse");
 
         String[]btns = {"Religion", "Politics", "The Great Pumpkin"} ;
         LinearLayout p1 = (LinearLayout)findViewById(R.id.p11);
@@ -37,7 +38,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             b1.setText(btns[i]);
             b1.setTag(i);
             p1.addView(b1);
-//            b1.setOnClickListener(MainActivity.this);
+            b1.setOnClickListener(MainActivity.this);
         }
         String[]btns2 = {"Religion", "Politics", "The Great Pumpkin"} ;
         LinearLayout p2 = (LinearLayout)findViewById(R.id.p12);
@@ -85,8 +86,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //        //TODO for debugging the login activity only
         SharedPreferences.Editor editor = preferences.edit();
         editor.putInt(getString(R.string.user_id_pref_key), -1);
+        editor.commit();
 
         int userID = preferences.getInt(getString(R.string.user_id_pref_key), -1); // i = -1 means the default return val is -1
+        toastRelay(userID + "");
         // If they have not, start the user profile setup activity
         if(userID == -1){
             Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
@@ -95,7 +98,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         // if they have, get the user's data from our database
         else{
             currentUser = userDBHandler.findUser(userID);
-            toastRelay("Welcome " + currentUser.name + "!");
+            if(currentUser != null){
+                toastRelay("Welcome " + currentUser.name + "!");
+            } else {
+                toastRelay("Welcome! We didn't find your info.");
+                System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&" + userDBHandler.getTableString());
+            }
+
         }
     }
 

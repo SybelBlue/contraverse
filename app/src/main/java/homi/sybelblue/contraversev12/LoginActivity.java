@@ -28,6 +28,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        setTitle("Make Account");
 
         // set onClickListeners for all buttons
         findViewById(R.id.login_back).setOnClickListener(this);
@@ -76,7 +77,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 editor.putInt(getString(R.string.user_id_pref_key), 3); //TODO store the data in the database
                 editor.commit();
 
-                User user = new User(3, new int[]{0});
+                User user = new User(3, new int[]{4});
                 user.name = displayName;
 
                 MainActivity.userDBHandler.addUser(user);

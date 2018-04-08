@@ -3,6 +3,8 @@ package homi.sybelblue.contraversev12;
 import java.util.ArrayList;
 import java.util.Date;
 
+import homi.sybelblue.contraversev12.questions.SpecificQuestion;
+
 /**
  * Created by kajb3 on 4/7/2018.
  */
@@ -14,7 +16,7 @@ public class Convo {
     public final User userA;
     public final User userB;
     public final SpecificQuestion specificQuestion;
-    private ArrayList<Response> convoTexts;
+    private ArrayList<Response<String>> convoTexts;
 
 
     public Convo(Date timestamp, User userA, User userB, SpecificQuestion specificQuestion, Response<String>... convoTexts) {
