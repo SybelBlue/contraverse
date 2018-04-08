@@ -18,7 +18,7 @@ import java.util.Random;
 import homi.sybelblue.contraversev12.questions.Prompt;
 import homi.sybelblue.contraversev12.questions.SpecificQuestion;
 
-public class AddMenu extends AppCompatActivity implements View.OnClickListener  {
+public class AddMenu extends AppCompatActivity implements View.OnClickListener {
 
     private TextView questionTextView;
     private RadioGroup radioGroup;
@@ -34,6 +34,7 @@ public class AddMenu extends AppCompatActivity implements View.OnClickListener  
         questionTextView = findViewById(R.id.add_menu_question);
         radioGroup = findViewById(R.id.add_menu_radios);
         next = findViewById(R.id.add_menu_next);
+        next.setOnClickListener(this);
 
         // TODO get SpecificQuestion object from database
         // for now I have made one up. I don't know if this is exactly the right idea, but it can be changed :)
@@ -58,7 +59,7 @@ public class AddMenu extends AppCompatActivity implements View.OnClickListener  
         }
 
 
-        // this is code that we could use to help mock up having multiple possible questions.
+        // this is code that we can use to help mock up having multiple possible questions.
         String options[] = {"x","y","z",};
         Random rand = new Random();
         int i = rand.nextInt(options.length);
@@ -68,7 +69,7 @@ public class AddMenu extends AppCompatActivity implements View.OnClickListener  
         LinearLayout P1 = (LinearLayout)findViewById(R.id.p1);
         ti.setText(options[i]);
         ti.setTag(-1);
-        P1.addView(ti);
+        //P1.addView(ti);
 
         String results[] = new String[options.length]; //The Logan Autocomplete tried correcting this, if not so, fix
 
@@ -76,7 +77,8 @@ public class AddMenu extends AppCompatActivity implements View.OnClickListener  
 
 
 
-
+// I made the hard-coded radiobutton, radiobutton2, etc visibility=View.GONE in the xml because the
+// screen has overlapping radiogroups currently (once the other buttons populate). -Keara
     public void onRadioButtonClicked(View view) {
         // Is the button now checked?
         boolean checked = ((RadioButton) view).isChecked();
@@ -116,24 +118,24 @@ public class AddMenu extends AppCompatActivity implements View.OnClickListener  
 
     @Override
     public void onClick(View v) {
+
         switch (v.getId()){
             case R.id.add_menu_next:
-                Intent intent = new Intent(getApplicationContext(), SQAnsReasonActivity.class);
-                intent.putExtra("topic", specificQuestion.topicHeading);
-                intent.putExtra("questionText", specificQuestion.multipleChoice.text);
-                Button pickedButton = findViewById(radioGroup.getCheckedRadioButtonId());
-                intent.putExtra("response", pickedButton.getText());
-                startActivity(intent);
+
                 // TODO I cannot actually get the intent to go to the next activity! Oh well
                 // if a radio button is selected, allow user to move on
                 if(radioGroup.getCheckedRadioButtonId() != -1){
-
+                    Intent intent = new Intent(AddMenu.this, SQAnsReasonActivity.class);
+                    intent.putExtra("topic", specificQuestion.topicHeading);
+                    intent.putExtra("questionText", specificQuestion.multipleChoice.text);
+                    Button pickedButton = findViewById(radioGroup.getCheckedRadioButtonId());
+                    intent.putExtra("response", pickedButton.getText());
+                    startActivity(intent);
                 }
-                //TODO this does not work maybe? IT doens't make a toast for sure but eh
+                //TODO this does not work maybe? It doesn't make a toast for sure but eh
                 else{
                     Toast.makeText(getApplicationContext(), "Please select an option.", Toast.LENGTH_SHORT).show();
                 }
-                finish();
                 break;
         }
 

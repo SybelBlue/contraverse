@@ -1,6 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="6dp">
+
+    <TextView
+        android:id="@+id/sq_ans_reason_question"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/sq_ans_reason_radio_response"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/sq_ans_reason_question"/>
+
+    <EditText
+        android:id="@+id/sq_ans_reason_edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/sq_ans_reason_hint"
+        app:layout_constraintTop_toBottomOf="@id/sq_ans_reason_radio_response"/>
+
+    <Button
+        android:id="@+id/sq_ans_reason_submit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/login_submit"
+        app:layout_constraintTop_toBottomOf="@id/sq_ans_reason_edit_text"/>
 
 </android.support.constraint.ConstraintLayout>
