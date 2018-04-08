@@ -30,7 +30,8 @@ public class LoginConfActivity extends AppCompatActivity implements View.OnClick
         super.onStart();
 
         confirmationText = findViewById(R.id.login_confirmation_text);
-        confirmationText.setText("Your Display Name: " + displayName);
+        confirmationText.setText("Your Display Name: " + displayName + "\n" +
+            "Remember that a successful conversation is repectful, interesting, responsive, and moves toward mutual understanding.");
     }
 
     @Override

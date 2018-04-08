@@ -18,25 +18,25 @@ public class Review extends AppCompatActivity implements View.OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_end);
+        setContentView(R.layout.activity_success_fail);
 //        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 //        setSupportActionBar(toolbar);
         setTitle("Review Conversation");
 
-
-        Button Suc = new Button(Review.this);
-        LinearLayout p1 = (LinearLayout) findViewById(R.id.p13);
-        Suc.setText("New Conversation");
-        Suc.setTag(-1);
-        p1.addView(Suc);
-        Suc.setOnClickListener(Review.this);
-
-        Button Fail = new Button(Review.this);
-        LinearLayout p3 = (LinearLayout) findViewById(R.id.p13);
-        Fail.setText("New Conversation");
-        Fail.setTag(1);
-        p3.addView(Fail);
-        Fail.setOnClickListener(Review.this);
+//
+//        Button Suc = new Button(Review.this);
+//        LinearLayout p1 = (LinearLayout) findViewById(R.id.p13);
+//        Suc.setText("New Conversation");
+//        Suc.setTag(-1);
+//        p1.addView(Suc);
+//        Suc.setOnClickListener(Review.this);
+//
+//        Button Fail = new Button(Review.this);
+//        LinearLayout p3 = (LinearLayout) findViewById(R.id.p13);
+//        Fail.setText("New Conversation");
+//        Fail.setTag(1);
+//        p3.addView(Fail);
+//        Fail.setOnClickListener(Review.this);
     }
 
 
