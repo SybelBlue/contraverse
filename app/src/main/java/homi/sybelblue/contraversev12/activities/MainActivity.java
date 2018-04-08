@@ -1,7 +1,5 @@
 package homi.sybelblue.contraversev12.activities;
 
-
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -15,6 +13,7 @@ import android.widget.Toast;
 
 import com.sendbird.android.SendBird;
 
+import homi.sybelblue.contraversev12.ContraverseUtils;
 import homi.sybelblue.contraversev12.R;
 import homi.sybelblue.contraversev12.User;
 import homi.sybelblue.contraversev12.UserDBHandler;
@@ -47,7 +46,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             p1.addView(b1);
             b1.setOnClickListener(MainActivity.this);
         }
-        String[]btns2 = {"Religion", "Politics", "The Great Pumpkin"} ;
+        String[]btns2 = {"HotDog Sandwiches", "Puppy Kisses", "Coffee vs Tea"} ;
         LinearLayout p2 = (LinearLayout)findViewById(R.id.p12);
 
         for (int i=0; i < btns.length; i++) {
@@ -82,8 +81,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         preferences = getSharedPreferences(getString(R.string.preferences_filename), 0);
 
         // this sets up the messaging service
-        SendBird.init(APP_ID, getApplicationContext());
-
+//        try {
+//            SendBird.init(APP_ID, this);
+//        } catch (Exception e) {
+//            ContraverseUtils.toastRelay(this, "Error Connecting: See LogCat");
+//            e.printStackTrace();
+//        }
         //TODO for debugging the login activity only
         SharedPreferences.Editor editor = preferences.edit();
         editor.putLong(getString(R.string.user_id_pref_key), -1);
@@ -104,7 +107,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         // Handle item selection
         switch (item.getItemId()) {
             case R.id.action_settings:
-                Toast.makeText(getApplicationContext(), "we don here " , Toast.LENGTH_SHORT).show();
+                ContraverseUtils.toastRelay(this, "we don here");
 
             default:
                 return super.onOptionsItemSelected(item);

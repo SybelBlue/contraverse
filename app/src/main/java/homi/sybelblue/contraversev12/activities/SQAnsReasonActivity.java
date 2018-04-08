@@ -31,9 +31,9 @@ public class SQAnsReasonActivity extends AppCompatActivity implements View.OnCli
 
         // gets the strings passed in by the activity that started this one.
         Intent intent = getIntent();
-        topic = intent.getStringExtra("topic");
-        questionText = intent.getStringExtra("questionText");
-        response = intent.getStringExtra("response");
+        topic = intent.getStringExtra(getString(R.string.sq_topic_key));
+        questionText = intent.getStringExtra(getString(R.string.sq_question_text));
+        response = intent.getStringExtra(getString(R.string.sq_response));
 
         // find all the views we need
         questionTextView = findViewById(R.id.sq_ans_reason_question);
