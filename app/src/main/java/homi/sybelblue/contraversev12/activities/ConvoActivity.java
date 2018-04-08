@@ -81,16 +81,16 @@ public class ConvoActivity extends AppCompatActivity implements View.OnClickList
         // Handle item selection
         switch (item.getItemId()) {
             case R.id.list_item:
-//                Intent intent = new Intent(ConvoActivity.this, ViewSQResponsesActivity.class);
-//                Intent current = getIntent();
-//
-//                ContraverseUtils.pushOldExtra(this, current, intent,
-//                        R.string.sq_topic_key,
-//                        R.string.sq_question_text,
-//                        R.string.sq_response,
-//                        R.string.sq_reasoning);
-//
-//                startActivity(intent);
+                Intent intent = new Intent(ConvoActivity.this, ViewSQResponsesActivity.class);
+                Intent current = getIntent();
+
+                ContraverseUtils.pushOldExtra(this, current, intent,
+                        R.string.sq_topic_key,
+                        R.string.sq_question_text,
+                        R.string.sq_response,
+                        R.string.sq_reasoning);
+
+                startActivity(intent);
                 break;
             case R.id.endBtn:
                 Intent intent1 = new Intent(ConvoActivity.this, End.class);
