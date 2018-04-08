@@ -50,15 +50,16 @@ public class UserDBHandler extends SQLiteOpenHelper {
         StringBuilder CREATE_USER_TOPICS = new StringBuilder("CREATE TABLE " + "Topics" + "(");
         StringBuilder CREATE_USERS_TABLE = new StringBuilder("CREATE TABLE " + USERS_TABLE + "(" + COLUMN_ID +
                 " BIGINT PRIMARY KEY," + COLUMN_NAME + " TEXT," + COLUMN_SS +
-                " INTEGER," + COLUMN_SF + " INTEGER," + COLUMN_FS + " INTEGER," + COLUMN_FF + " INTEGER, Economics INTEGER,");
+                " INTEGER," + COLUMN_SF + " INTEGER," + COLUMN_FS + " INTEGER," + COLUMN_FF + " INTEGER,");
         String CREATE_QUESTIONS_TABLE = "CREATE TABLE QUESTIONS(Topic TEXT, Level INTEGER, Question TEXT);";
 
         for (int i = 0; i < NUM_TOPICS; i++) {
+            String str = "Topic" + i;
 
-            CREATE_USER_TOPICS.append(MainActivity.TOPICS[i]);
+            CREATE_USER_TOPICS.append(str);
             CREATE_USER_TOPICS.append(" TEXT,");
 
-            CREATE_USERS_TABLE.append(MainActivity.TOPICS[i]);
+            CREATE_USERS_TABLE.append(str);
             CREATE_USERS_TABLE.append(" INTEGER,");
         }
 
@@ -116,7 +117,7 @@ public class UserDBHandler extends SQLiteOpenHelper {
         int rating2 = getRating(ID2);
         int lowerRating = Math.min(rating1, rating2);
         int topicNum = random.nextInt(MainActivity.NUM_TOPICS);
-        String potentialTopic = MainActivity.TOPICS[topicNum];
+        String potentialTopic = "Topic" + topicNum;
         if (isViableTopic(ID1, ID2, potentialTopic, rating1, rating2)) {
             String query = "SELECT Question FROM Questions WHERE Topic = " + potentialTopic + " AND Rating <= " + lowerRating + ";";
             Cursor cursor = db.rawQuery(query, null);
