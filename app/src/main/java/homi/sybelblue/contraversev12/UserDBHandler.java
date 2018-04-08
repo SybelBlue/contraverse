@@ -6,6 +6,10 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.content.Context;
 import android.content.ContentValues;
 
+import java.util.Random;
+
+import homi.sybelblue.contraversev12.activities.MainActivity;
+
 public class UserDBHandler extends SQLiteOpenHelper {
     private final int NUM_TOPICS;
     private static final int DATABASE_VERSION = 1;
@@ -47,14 +51,14 @@ public class UserDBHandler extends SQLiteOpenHelper {
         StringBuilder CREATE_USERS_TABLE = new StringBuilder("CREATE TABLE " + USERS_TABLE + "(" + COLUMN_ID +
                 " BIGINT PRIMARY KEY," + COLUMN_NAME + " TEXT," + COLUMN_SS +
                 " INTEGER," + COLUMN_SF + " INTEGER," + COLUMN_FS + " INTEGER," + COLUMN_FF + " INTEGER,");
+        String CREATE_QUESTIONS_TABLE = "CREATE TABLE QUESTIONS(ID BIGINT PRIMARY KEY, Topic TEXT, Level INTEGER, Question TEXT);";
 
-        for (int i = 0; i < NUM_TOPICS; i++) {
-            String var = "Topic" + i;
+        for (String topic : MainActivity.TOPICS) {
 
-            CREATE_USER_TOPICS.append(var);
+            CREATE_USER_TOPICS.append(topic);
             CREATE_USER_TOPICS.append(" TEXT,");
 
-            CREATE_USERS_TABLE.append(var);
+            CREATE_USERS_TABLE.append(topic);
             CREATE_USERS_TABLE.append(" INTEGER,");
         }
 
@@ -62,6 +66,67 @@ public class UserDBHandler extends SQLiteOpenHelper {
         CREATE_USERS_TABLE.replace(CREATE_USERS_TABLE.length() - 1, CREATE_USERS_TABLE.length(), ");");
         db.execSQL(CREATE_USERS_TABLE.toString());
         db.execSQL(CREATE_USER_TOPICS.toString());
+        db.execSQL(CREATE_QUESTIONS_TABLE);
+    }
+
+    public void addQuestion(String topic, String question, int level) {
+        ContentValues values = new ContentValues();
+        values.put("ID", System.currentTimeMillis());
+        values.put("Topic", topic);
+        values.put("Level", level);
+        values.put("Question", question);
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.insert("Questions", null, values);
+        db.close();
+    }
+
+    public String getTopicQuestion(String topic) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "SELECT Question FROM Questions WHERE Topic = " + topic + " AND Rating IS NULL;";
+        Cursor cursor = db.rawQuery(query, null);
+        if (cursor.moveToFirst()) {
+            return cursor.getString(0);
+        }
+        cursor.close();
+        db.close();
+        return "";
+    }
+
+    private boolean isViableTopic(long ID1, long ID2, String topic, int rating1, int rating2) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        int user1Val;
+        int user2Val;
+        String query = "SELECT " + topic + " FROM Users WHERE ID = " + ID1 + " OR ID = " + ID2 + ";";
+        Cursor cursor = db.rawQuery(query, null);
+        if (cursor.getCount() == 2) {
+            user1Val = cursor.getInt(0);
+            user2Val = cursor.getInt(1);
+            if (user1Val != user2Val && Math.abs(rating1 - rating2) <= 2) {
+                cursor.close();
+                return true;
+            }
+        }
+        db.close();
+        return false;
+    }
+
+    public String getQuestion(long ID1, long ID2) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Random random = new Random();
+        int rating1 = getRating(ID1);
+        int rating2 = getRating(ID2);
+        int lowerRating = Math.min(rating1, rating2);
+        int topicNum = random.nextInt(MainActivity.NUM_TOPICS);
+        String potentialTopic = MainActivity.TOPICS[topicNum];
+        if (isViableTopic(ID1, ID2, potentialTopic, rating1, rating2)) {
+            String query = "SELECT Question FROM Questions WHERE Topic = " + potentialTopic + " AND Rating <= " + lowerRating + ";";
+            Cursor cursor = db.rawQuery(query, null);
+            if (cursor.moveToFirst()) {
+                return cursor.getString(random.nextInt(cursor.getCount()));
+            }
+            cursor.close();
+        }
+        return "";
     }
 
     public void addUser(User user) {
@@ -77,14 +142,14 @@ public class UserDBHandler extends SQLiteOpenHelper {
         values.put(COLUMN_FS, FS);
         values.put(COLUMN_FF, FF);
         for (int i = 0; i < NUM_TOPICS; i++) {
-            values.put("Topic" + i, user.topicQuestions[i]);
+            values.put(MainActivity.TOPICS[i], user.topicQuestions[i]);
         }
         SQLiteDatabase db = this.getWritableDatabase();
         db.insert(USERS_TABLE, null, values);
         db.close();
     }
 
-    public User findUser(long ID){
+    public User findUser(long ID) {
         String query = "SELECT * FROM " + USERS_TABLE + " WHERE " + COLUMN_ID + " = " + ID + ";";
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(query, null);
@@ -95,7 +160,7 @@ public class UserDBHandler extends SQLiteOpenHelper {
         int FS;
         int FF;
         int[] topicQuestions = new int[NUM_TOPICS];
-        if (cursor.moveToFirst()){
+        if (cursor.moveToFirst()) {
             foundID = (long) cursor.getInt(0);
             name = cursor.getString(1);
             SS = cursor.getInt(2);
@@ -119,8 +184,8 @@ public class UserDBHandler extends SQLiteOpenHelper {
         return null;
     }
 
-    private int generateRating(int SS, int SF, int FS, int FF){
-        return  2*SS + Math.min(SS, (SF + FS));
+    private int generateRating(int SS, int SF, int FS, int FF) {
+        return 2 * SS + Math.min(SS, (SF + FS));
     }
 
     public void incrementSS(long ID) {
@@ -158,9 +223,9 @@ public class UserDBHandler extends SQLiteOpenHelper {
 
     public int getIntegerColumn(long ID, String column, String tableName) {
         SQLiteDatabase db = this.getWritableDatabase();
-        String query = "SELECT " + column +  " FROM " + tableName + " WHERE ID = " + ID + ";";
+        String query = "SELECT " + column + " FROM " + tableName + " WHERE ID = " + ID + ";";
         Cursor cursor = db.rawQuery(query, null);
-        if (cursor.moveToFirst()){
+        if (cursor.moveToFirst()) {
             int result = cursor.getInt(0);
             cursor.close();
             db.close();
@@ -172,7 +237,7 @@ public class UserDBHandler extends SQLiteOpenHelper {
 
     public String getStringColumn(long ID, String column, String tableName) {
         SQLiteDatabase db = this.getWritableDatabase();
-        String query = "SELECT " + column +  " FROM " + tableName + " WHERE ID = " + ID + ";";
+        String query = "SELECT " + column + " FROM " + tableName + " WHERE ID = " + ID + ";";
         Cursor cursor = db.rawQuery(query, null);
         if (cursor.moveToFirst()) {
             String result = cursor.getString(0);

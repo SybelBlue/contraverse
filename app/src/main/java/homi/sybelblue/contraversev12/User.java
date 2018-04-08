@@ -1,5 +1,8 @@
 package homi.sybelblue.contraversev12;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static homi.sybelblue.contraversev12.ContraverseUtils.SFCODE_SIZE;
 import static homi.sybelblue.contraversev12.ContraverseUtils.numberFromCode;
 
@@ -9,12 +12,14 @@ public class User {
     public final long ID;
     private int[] sfrates;
     public final int[] topicQuestions;
+    public List<Long> answeredQuestions;
 
     private int rating, level;
 
     public User(long ID, int[] topicQuestions) {
         this.ID = ID;
         this.topicQuestions = topicQuestions;
+        this.answeredQuestions = new ArrayList<>();
 
         sfrates = new int[SFCODE_SIZE];
         updateRatingAndLevel();

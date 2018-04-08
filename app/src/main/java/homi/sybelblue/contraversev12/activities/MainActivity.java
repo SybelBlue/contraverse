@@ -20,7 +20,8 @@ import homi.sybelblue.contraversev12.UserDBHandler;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener  {
 
-    public static final int NUM_TOPICS = 1;
+    public static final String[] TOPICS = {"Fluff", "Gun Control", "Economics", "Gender Identity"};
+    public static final int NUM_TOPICS = TOPICS.length;
     public static final String APP_ID = "3DD0EDE4-A184-4C09-955F-2DAB409EDBA1"; //yay security!
 
     public static UserDBHandler userDBHandler;
