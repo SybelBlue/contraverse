@@ -53,12 +53,12 @@ public class UserDBHandler extends SQLiteOpenHelper {
                 " INTEGER," + COLUMN_SF + " INTEGER," + COLUMN_FS + " INTEGER," + COLUMN_FF + " INTEGER,");
         String CREATE_QUESTIONS_TABLE = "CREATE TABLE QUESTIONS(Topic TEXT, Level INTEGER, Question TEXT);";
 
-        for (String topic : MainActivity.TOPICS) {
+        for (int i = 0; i < NUM_TOPICS; i++) {
 
-            CREATE_USER_TOPICS.append(topic);
+            CREATE_USER_TOPICS.append(MainActivity.TOPICS[i]);
             CREATE_USER_TOPICS.append(" TEXT,");
 
-            CREATE_USERS_TABLE.append(topic);
+            CREATE_USERS_TABLE.append(MainActivity.TOPICS[i]);
             CREATE_USERS_TABLE.append(" INTEGER,");
         }
 
@@ -167,8 +167,7 @@ public class UserDBHandler extends SQLiteOpenHelper {
             FS = cursor.getInt(4);
             FF = cursor.getInt(5);
             for (int i = 6; i < NUM_TOPICS + 6; i++) {
-                int answer = cursor.getInt(i);
-                topicQuestions[i - 6] = answer;
+                topicQuestions[i - 6] = cursor.getInt(i);
             }
             User user = new User(foundID, topicQuestions);
             user.name = name;
