@@ -17,12 +17,15 @@ public class Convo {
     private ArrayList<Response> convoTexts;
 
 
-    public Convo(Date timestamp, User userA, User userB, SpecificQuestion specificQuestion, Response... convoTexts) {
+    public Convo(Date timestamp, User userA, User userB, SpecificQuestion specificQuestion, Response<String>... convoTexts) {
         this.timestamp = timestamp;
         this.userA = userA;
         this.userB = userB;
         this.specificQuestion = specificQuestion;
-        this.convoTexts = new ArrayList<Response>(convoTexts);
+        this.convoTexts = new ArrayList<>(convoTexts.length);
+
+        for (Response<String> response : convoTexts)
+            this.convoTexts.add(response);
     }
 
     public Convo(Date timestamp, User userA, User userB, SpecificQuestion specificQuestion) {
@@ -37,8 +40,8 @@ public class Convo {
     // Getters and setters
     // --------------------------------------------------------------------
 
-    public Response[] getConvoTexts() {
-        return convoTexts;
+    public Response<String>[] getConvoTexts() {
+        return (Response<String>[]) convoTexts.toArray();
     }
 
     /**
