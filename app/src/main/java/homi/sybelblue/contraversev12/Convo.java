@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 
+import homi.sybelblue.contraversev12.activities.MainActivity;
 import homi.sybelblue.contraversev12.questions.SpecificQuestion;
 
 /**
@@ -18,6 +19,8 @@ public class Convo {
     public final User userB;
     public final SpecificQuestion specificQuestion;
     private ArrayList<Response<String>> convoTexts;
+
+    private static final String SEP = "%>%";
 
 
     public Convo(Date timestamp, User userA, User userB, SpecificQuestion specificQuestion, Response<String>... convoTexts) {
@@ -56,6 +59,36 @@ public class Convo {
             }
         }
         return null;
+    }
+
+
+    public String encode(){
+        String encoded = userB.name + SEP + userB.ID;
+        for(Response<String> response : convoTexts ){
+            encoded += SEP + response.response + SEP + (response.user.equals(userA) ? "A" : "B");
+        }
+
+        return encoded;
+    }
+
+    public static Convo decode(String encoded){
+        String[] parts = encoded.split(SEP);
+        String userBName = parts[0];
+        long userBID = Long.parseLong(parts[1]);
+
+        User userA = MainActivity.currentUser;
+        User userB = new User(userBName, userBID, new int[0]);
+
+        Convo convo = new Convo(userA, userB, null);
+        convo.convoTexts = new ArrayList<Response<String>>();
+
+        for(int i = 2; i < parts.length; i+=2){
+            User user = (parts[i+1].equals("A") ? userA : userB);
+            Response<String> response = new Response<>(user, parts[i]);
+            convo.convoTexts.add(response);
+        }
+
+        return convo;
     }
 
 }
