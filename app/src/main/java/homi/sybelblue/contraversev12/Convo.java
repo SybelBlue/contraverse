@@ -1,5 +1,6 @@
 package homi.sybelblue.contraversev12;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -12,32 +13,35 @@ public class Convo {
     public final Date timestamp;
     public final User userA;
     public final User userB;
-    public final Topic topic;
-    private Response[] convoTexts;
+    public final SpecificQuestion specificQuestion;
+    private ArrayList<Response> convoTexts;
 
 
-    public Convo(Date timestamp, User userA, User userB, Topic topic, Response[] convoTexts) {
+    public Convo(Date timestamp, User userA, User userB, SpecificQuestion specificQuestion, Response<String>... convoTexts) {
         this.timestamp = timestamp;
         this.userA = userA;
         this.userB = userB;
-        this.topic = topic;
-        this.convoTexts = convoTexts;
+        this.specificQuestion = specificQuestion;
+        this.convoTexts = new ArrayList<>(convoTexts.length);
+
+        for (Response<String> response : convoTexts)
+            this.convoTexts.add(response);
     }
 
-    public Convo(Date timestamp, User userA, User userB, Topic topic) {
-        this(timestamp, userA, userB, topic, new Response[0]);
+    public Convo(Date timestamp, User userA, User userB, SpecificQuestion specificQuestion) {
+        this(timestamp, userA, userB, specificQuestion, new Response[0]);
     }
 
-    public Convo(User userA, User userB, Topic topic) {
-        this(new Date(), userA, userB, topic);
+    public Convo(User userA, User userB, SpecificQuestion specificQuestion) {
+        this(new Date(), userA, userB, specificQuestion);
     }
 
     // --------------------------------------------------------------------
     // Getters and setters
     // --------------------------------------------------------------------
 
-    public Response[] getConvoTexts() {
-        return convoTexts;
+    public Response<String>[] getConvoTexts() {
+        return (Response<String>[]) convoTexts.toArray();
     }
 
     /**

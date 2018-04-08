@@ -49,7 +49,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         form.setVisibility(View.VISIBLE);
         confirmationLayout.setVisibility(View.GONE);
 
-        //TODO actually ask the startup questions (I think they are officially called Topic Questions)
+        //TODO actually ask the startup questions (I think they are officially called SpecificQuestion Questions)
     }
 
     @Override

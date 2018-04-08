@@ -19,6 +19,7 @@ import android.widget.LinearLayout;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener  {
 
     public static UserDBHandler userDBHandler;
+    public static User currentUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,7 +94,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         // if they have, get the user's data from our database
         else{
-            userDBHandler.findUser(userID);
+            currentUser = userDBHandler.findUser(userID);
+            toastRelay("Welcome " + currentUser.name + "!");
         }
     }
 
