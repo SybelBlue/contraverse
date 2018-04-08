@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public static UserDBHandler userDBHandler;
     public static User currentUser;
+    private SharedPreferences preferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +65,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         userDBHandler = new UserDBHandler(this, null, 1);
 
+        // Check whether the user has set up their "account" yet
+        preferences = getSharedPreferences(getString(R.string.preferences_filename), 0);
+
+//        //TODO for debugging the login activity only
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putInt(getString(R.string.user_id_pref_key), -1);
+        editor.commit();
     }
 
     @Override
@@ -79,14 +87,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onStart(){
         super.onStart();
-
-        // Check whether the user has set up their "account" yet
-        SharedPreferences preferences = getSharedPreferences(getString(R.string.preferences_filename), 0);
-//
-//        //TODO for debugging the login activity only
-        SharedPreferences.Editor editor = preferences.edit();
-        editor.putInt(getString(R.string.user_id_pref_key), -1);
-        editor.commit();
 
         int userID = preferences.getInt(getString(R.string.user_id_pref_key), -1); // i = -1 means the default return val is -1
         toastRelay(userID + "");
