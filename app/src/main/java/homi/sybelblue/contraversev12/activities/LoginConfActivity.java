@@ -6,9 +6,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 
+import com.sendbird.android.SendBird;
+import com.sendbird.android.SendBirdException;
+
 import homi.sybelblue.contraversev12.R;
-import homi.sybelblue.contraversev12.User;
-import homi.sybelblue.contraversev12.activities.MainActivity;
 
 public class LoginConfActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -45,9 +46,21 @@ public class LoginConfActivity extends AppCompatActivity implements View.OnClick
                 editor.putLong(getString(R.string.user_id_pref_key), id);
                 editor.commit();
 
-                User user = new User(displayName, id, new int[MainActivity.NUM_TOPICS]);
+                homi.sybelblue.contraversev12.User user =
+                        new homi.sybelblue.contraversev12.User(displayName, id, new int[MainActivity.NUM_TOPICS]);
 
                 MainActivity.userDBHandler.addUser(user);
+
+                //set the user up for SendBird messaging service
+                SendBird.connect(id+"", new SendBird.ConnectHandler() {
+                    @Override
+                    public void onConnected(com.sendbird.android.User user, SendBirdException e) {
+                        if (e != null) {
+                            // Error.
+                            return;
+                        }
+                    }
+                });
 
                 finish();
         }
